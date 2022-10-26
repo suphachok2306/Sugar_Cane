@@ -8,24 +8,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="821.0" style="-fx-background-color: BISQUE;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="316.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner">
+      <Text layoutX="333.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee">
          <font>
             <Font name="Century" size="17.0" />
          </font>
       </Text>
       <TableView layoutX="115.0" layoutY="82.0" prefHeight="370.0" prefWidth="485.0">
-        <columns>
-          <TableColumn prefWidth="358.3999710083008" text="Work" />
-          <TableColumn prefWidth="125.59994506835938" text="Status" />
-        </columns>
+         <columns>
+            <TableColumn prefWidth="358.3999710083008" text="Work" />
+            <TableColumn prefWidth="125.59994506835938" text="Status" />
+         </columns>
       </TableView>
-      <Button layoutX="499.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="CHECK" />
-      <Button layoutX="568.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="LOGOUT" textFill="RED" />
-      <Button layoutX="26.0" layoutY="538.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="162.0" text="EXPORT SUGAR CANE" />
-      <Button layoutX="107.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="CONFIRM" />
+      <Button layoutX="678.0" layoutY="542.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="LOGOUT" textFill="RED" />
+      <Button layoutX="115.0" layoutY="474.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="ส่งงาน" />
       <Label layoutX="644.0" layoutY="113.0" text="Label" />
    </children>
 </AnchorPane>
