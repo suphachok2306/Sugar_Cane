@@ -4,16 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ku.cs.models.User;
-import ku.cs.models.UserList;
 
-import javax.swing.*;
 import java.sql.*;
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RegisterController {
     @FXML private TextField nameTextField;
@@ -26,6 +19,7 @@ public class RegisterController {
     private Connection con = null;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
+
 
     public RegisterController(){
         con = Connect.ConnectDB();
@@ -44,8 +38,12 @@ public class RegisterController {
         }
 
         if(CheckUserName(userNameTextField.getText())){
-            usernameLabel.setVisible(false);
-            count += 1;
+            if(CheckSameUser()){
+                usernameLabel.setVisible(true);
+            } else{
+                usernameLabel.setVisible(false);
+                count += 1;
+            }
         } else{
             warningLabel.setVisible(true);
         }
@@ -57,8 +55,12 @@ public class RegisterController {
         }
 
         if(Checkemail(emailTextField.getText())){
-            emailLabel.setVisible(false);
-            count += 1;
+            if(CheckSameEmail()){
+                emailLabel.setVisible(true);
+            } else{
+                emailLabel.setVisible(false);
+                count += 1;
+            }
         } else{
             warningLabel.setVisible(true);
         }
@@ -107,13 +109,6 @@ public class RegisterController {
         }
         if (userName.equals("")){
             return false;
-        }else{
-            for(User u : UserList.getAllUsers()){
-                if(userNameTextField.equals(u.getUsername())) {
-                    usernameLabel.setText("* มี username นี้แล้วในระบบ");
-                    return false;
-                }
-            }
         }
         return true;
     }
@@ -135,12 +130,6 @@ public class RegisterController {
         if (email.contains(" ")){
             return false;
         }
-        for(User u : UserList.getAllUsers()){
-            if(emailTextField.equals(u.getUser_email())) {
-                emailLabel.setText("* มี email นี้แล้วในระบบ");
-                return false;
-            }
-        }
         return true;
     }
 
@@ -154,9 +143,37 @@ public class RegisterController {
         return true;
     }
 
+    public boolean CheckSameUser(){
+        try {
+            String SQL = "SELECT * FROM users";
+            rs = con.createStatement().executeQuery(SQL);
+            while (rs.next()){
+                if(userNameTextField.getText().equals(rs.getString("username"))) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean CheckSameEmail(){
+        try {
+            String SQL = "SELECT * FROM users";
+            rs = con.createStatement().executeQuery(SQL);
+            while (rs.next()){
+                if(emailTextField.getText().equals(rs.getString("email"))) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     public void clearAllText(){
-
-
         nameTextField.setText("");userNameTextField.setText("");passwordTextField.setText("");emailTextField.setText("");phoneTextField.setText("");
     }
 

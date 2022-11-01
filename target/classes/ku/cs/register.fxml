@@ -11,6 +11,7 @@
             <Font name="Century" size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="nameTextField" layoutX="125.0" layoutY="67.0" />
       <TextField fx:id="userNameTextField" layoutX="125.0" layoutY="102.0" />
       <Text layoutX="54.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
       <Text layoutX="56.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
@@ -22,7 +23,6 @@
       <Button layoutX="50.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="REGISTER" />
       <Button layoutX="591.0" layoutY="555.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
       <Text layoutX="65.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name    :" />
-      <TextField fx:id="nameTextField" layoutX="125.0" layoutY="67.0" />
       <Label fx:id="emailLabel" layoutX="296.0" layoutY="189.0" text="* มี email นี้แล้วในระบบ" textFill="RED" visible="false" />
       <Label fx:id="usernameLabel" layoutX="296.0" layoutY="106.0" text="* มี username นี้แล้วในระบบ" textFill="RED" visible="false" />
       <Label fx:id="warningLabel" layoutX="159.0" layoutY="266.0" text="กรอกข้อมูลไม่ครบ" textFill="RED" visible="false" />
