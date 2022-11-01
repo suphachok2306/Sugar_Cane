@@ -1,4 +1,4 @@
-package models;
+package ku.cs.models;
 
 public class Equipment {
     public String e_id;

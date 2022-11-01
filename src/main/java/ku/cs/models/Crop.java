@@ -1,4 +1,4 @@
-package models;
+package ku.cs.models;
 
 public class Crop {
     public String crop_id;

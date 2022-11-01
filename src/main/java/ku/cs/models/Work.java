@@ -1,4 +1,4 @@
-package models;
+package ku.cs.models;
 
 public class Work {
     public String n_date;

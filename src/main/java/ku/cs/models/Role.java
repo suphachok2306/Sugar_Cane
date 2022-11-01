@@ -1,4 +1,4 @@
-package models;
+package ku.cs.models;
 
 public class Role {
     public String r_id;

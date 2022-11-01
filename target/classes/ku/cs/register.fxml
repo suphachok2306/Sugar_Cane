@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="684.0" style="-fx-background-color: BISQUE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RegisterController">
+   <children>
+      <Text layoutX="310.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+         <font>
+            <Font name="Century" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="userNameTextField" layoutX="125.0" layoutY="102.0" />
+      <Text layoutX="54.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
+      <Text layoutX="56.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
+      <TextField fx:id="passwordTextField" layoutX="125.0" layoutY="144.0" />
+      <Text layoutX="64.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email     :" />
+      <TextField fx:id="emailTextField" layoutX="125.0" layoutY="185.0" />
+      <Text layoutX="65.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone   :" />
+      <TextField fx:id="phoneTextField" layoutX="125.0" layoutY="221.0" />
+      <Button layoutX="50.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="REGISTER" />
+      <Button layoutX="591.0" layoutY="555.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
+      <Text layoutX="65.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name    :" />
+      <TextField fx:id="nameTextField" layoutX="125.0" layoutY="67.0" />
+      <Label fx:id="emailLabel" layoutX="296.0" layoutY="189.0" text="* มี email นี้แล้วในระบบ" textFill="RED" visible="false" />
+      <Label fx:id="usernameLabel" layoutX="296.0" layoutY="106.0" text="* มี username นี้แล้วในระบบ" textFill="RED" visible="false" />
+      <Label fx:id="warningLabel" layoutX="159.0" layoutY="266.0" text="กรอกข้อมูลไม่ครบ" textFill="RED" visible="false" />
+   </children>
+</AnchorPane>
