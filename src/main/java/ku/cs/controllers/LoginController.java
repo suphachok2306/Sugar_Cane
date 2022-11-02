@@ -4,8 +4,8 @@ import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import ku.cs.models.User;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,7 +18,7 @@ public class LoginController {
     private String currentUsername;
 
     @FXML private TextField userNameTextField;
-    @FXML private TextField passwordField;
+    @FXML private PasswordField password;
     @FXML private Label missdata,wrongdata,nodata;
 
     String role;
@@ -36,7 +36,7 @@ public class LoginController {
         missdata.setVisible(false);
         wrongdata.setVisible(false);
         nodata.setVisible(false);
-        if(userNameTextField.getText().equals("") || passwordField.getText().equals("")){
+        if(userNameTextField.getText().equals("") || password.getText().equals("")){
             missdata.setVisible(true);
         }else if(CheckUser()){
             System.out.println("gg");
@@ -69,7 +69,7 @@ public class LoginController {
             rs = con.prepareStatement(SQL).executeQuery();
             while (rs.next()) {
                 if (userNameTextField.getText().equals(rs.getString("username"))) {
-                    if (passwordField.getText().equals(rs.getString("pass"))) {
+                    if (password.getText().equals(rs.getString("pass"))) {
                         role = rs.getString("role_id");
                         return true;
                     }

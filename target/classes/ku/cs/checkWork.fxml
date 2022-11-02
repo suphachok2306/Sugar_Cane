@@ -16,9 +16,9 @@
             <Font name="Century" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="workName" layoutX="494.0" layoutY="208.0" text="Label">
+      <Label fx:id="workName" layoutX="386.0" layoutY="206.0" text="Label">
          <font>
-            <Font size="18.0" />
+            <Font name="Century" size="24.0" />
          </font>
       </Label>
       <Label layoutX="237.0" layoutY="292.0" text="Start Date">
@@ -26,21 +26,21 @@
             <Font name="Century" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="sDate" layoutX="495.0" layoutY="294.0" text="Label">
+      <Label fx:id="sDate" layoutX="386.0" layoutY="296.0" text="Label">
          <font>
-            <Font size="18.0" />
+            <Font name="Century" size="18.0" />
          </font>
       </Label>
       <Button layoutX="515.0" layoutY="489.0" mnemonicParsing="false" onAction="#passButton" prefHeight="37.0" prefWidth="61.0" text="Pass" />
       <Button layoutX="211.0" layoutY="489.0" mnemonicParsing="false" onAction="#notPassButton" prefHeight="37.0" prefWidth="69.0" text="Not pass" />
-      <Label fx:id="hTime" layoutX="219.0" layoutY="376.0" text="Havested Time" visible="false">
+      <Label fx:id="hTime" layoutX="211.0" layoutY="376.0" text="Havested Time">
          <font>
-            <Font name="Century" size="22.0" />
+            <Font name="Century" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="hTimeLabel" layoutX="495.0" layoutY="377.0" text="Label" visible="false">
+      <Label fx:id="hTimeLabel" layoutX="410.0" layoutY="376.0" text="Label">
          <font>
-            <Font size="18.0" />
+            <Font name="Century" size="24.0" />
          </font>
       </Label>
    </children>

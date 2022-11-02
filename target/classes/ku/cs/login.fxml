@@ -12,7 +12,7 @@
          </font>
       </Text>
       <TextField fx:id="userNameTextField" layoutX="86.0" layoutY="140.0" />
-      <TextField fx:id="passwordField" layoutX="86.0" layoutY="192.0" />
+      <PasswordField fx:id="password" layoutX="86.0" layoutY="192.0" />
       <Text layoutX="13.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :">
          <font>
             <Font name="Century" size="12.0" />
