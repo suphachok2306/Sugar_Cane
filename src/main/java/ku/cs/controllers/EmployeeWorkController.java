@@ -6,9 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ku.cs.models.User;
 import ku.cs.models.Work;
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +28,11 @@ public class EmployeeWorkController implements Initializable {
 
     private Work selectedWork;
 
-    //@FXML private Label userID;
+    private User currentUser;
+
+    private int i = 1; //ไว้เช็คปุ่ม Send
+
+    @FXML private Label userName;
 
     @FXML
     private TableView<Work> tableView;
@@ -66,9 +72,8 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusCrop() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"1\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to assign works.");
+            error.show();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
@@ -86,9 +91,8 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusRestoration() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"2\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to assign works.");
+            error.show();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"2\"");
             pst.executeUpdate();
@@ -106,9 +110,8 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusCaring() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"3\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to assign works.");
+            error.show();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"3\"");
             pst.executeUpdate();
@@ -126,9 +129,8 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusHarvest() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"4\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to assign works.");
+            error.show();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"4\"");
             pst.executeUpdate();
@@ -145,14 +147,13 @@ public class EmployeeWorkController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.currentUser = (User) FXRouter.getData();
+        //userID.setText("USERNAME : "+ currentUser.getU_name());
         updateData();
     }
 
     public void showData() {
-        //String sql = "select * from worklist,statuswork,userwork";
-        //String sql = "SELECT work_name,status_name,date_start,date_done FROM worklist,statuswork,userwork";
-        //String sql = "SELECT work_name,status_name,date_start,date_done FROM worklist,statuswork,userwork WHERE status_name = \"Not assign.\"";
-        //String sql ="SELECT work_name,status_name,date_start,date_done FROM worklist,statuswork,userwork GROUP BY work_name";
+        //userID.setText("USER_ID : "+ currentUser.getUser_id());
 
         String sql = "SELECT work_name,status_name FROM work";
         //String sql2 = "SELECT user_id FROM users";
@@ -178,15 +179,36 @@ public class EmployeeWorkController implements Initializable {
         else {
             if (selectedWork.getWorkName().equals("Crop")) {
                 statusCrop();
+                i+=1;
             }
+
             if (selectedWork.getWorkName().equals("Restoration")) {
-                statusRestoration();
+                if (i == 2){
+                    statusRestoration();
+                    i+=1; }
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
+                    error.show();
+                }
             }
+
             if (selectedWork.getWorkName().equals("Caring")) {
-                statusCaring();
+                if (i == 3){
+                    statusCaring();
+                    i+=1; }
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
+                    error.show();
+                }
             }
+
             if (selectedWork.getWorkName().equals("Harvest")) {
-                statusHarvest();
+                if (i == 4){
+                    statusHarvest();}
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
+                    error.show();
+                }
             }
         }
     }

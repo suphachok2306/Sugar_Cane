@@ -45,6 +45,8 @@ public class OwnerWorkController implements Initializable {
     @FXML
     public TableColumn<Work, String> dateDone;
 
+    private int i = 1; //ไว้เช็คปุ่ม Confirm
+
 
     private LocalDateTime dateStartWork = LocalDateTime.now();
     //ใส่ไว้ในหน้า check
@@ -151,15 +153,36 @@ public class OwnerWorkController implements Initializable {
         else {
             if (selectedWork.getWorkName().equals("Crop")) {
                 statusCrop();
+                i+=1;
             }
+
             if (selectedWork.getWorkName().equals("Restoration")) {
-                statusRestoration();
+                if (i == 2){
+                    statusRestoration();
+                    i+=1; }
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
+                    error.show();
+                }
             }
+
             if (selectedWork.getWorkName().equals("Caring")) {
-                statusCaring();
+                if (i == 3){
+                    statusCaring();
+                    i+=1; }
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
+                    error.show();
+                }
             }
+
             if (selectedWork.getWorkName().equals("Harvest")) {
-                statusHarvest();
+                if (i == 4){
+                    statusHarvest();}
+                else {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
+                    error.show();
+                }
             }
         }
     }
@@ -185,8 +208,14 @@ public class OwnerWorkController implements Initializable {
         alert.setTitle("");
         alert.setContentText("Do you want to export sugar cane ?");
         Optional<ButtonType> result = alert.showAndWait();
+
+        //if(harvestTimes == 4)
+
         if(result.get() == ButtonType.OK) {
-            System.out.println("ok export");
+
+            i = 0;
+            System.out.println("ok export" + "i = " + i);
+
             pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
             pst.setString(2,null);
             pst.setString(3,null);
