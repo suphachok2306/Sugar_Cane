@@ -84,7 +84,7 @@ public class OwnerWorkController implements Initializable {
 
     public void statusCrop() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = ? , date_start = ? WHERE work_id = \"1\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? WHERE work_id = \"1\"");
             pst.setString(2,startDate);
             pst.setString(1,"Assigned.");
             pst.executeUpdate();
@@ -94,7 +94,7 @@ public class OwnerWorkController implements Initializable {
 
     public void statusRestoration() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = ? , date_start = ? WHERE work_id = \"2\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? WHERE work_id = \"2\"");
             pst.setString(2,startDate);
             pst.setString(1,"Assigned.");
             pst.executeUpdate();
@@ -104,7 +104,9 @@ public class OwnerWorkController implements Initializable {
 
     public void statusCaring() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = ? , date_start = ? WHERE work_id = \"3\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? WHERE work_id = \"3\"");
+            pst.setString(2,startDate);
+            pst.setString(1,"Assigned.");
             pst.executeUpdate();
             updateData();
         }
@@ -112,7 +114,9 @@ public class OwnerWorkController implements Initializable {
 
     public void statusHarvest() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = ? , date_start = ? WHERE work_id = \"4\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? WHERE work_id = \"4\"");
+            pst.setString(2,startDate);
+            pst.setString(1,"Assigned.");
             pst.executeUpdate();
             updateData();
         }
@@ -123,7 +127,7 @@ public class OwnerWorkController implements Initializable {
     }
 
     public void showData() {
-        String sql = "SELECT work_name,status_name,date_start,date_done FROM worklist";
+        String sql = "SELECT work_name,status_name,date_start,date_done FROM work";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -183,7 +187,7 @@ public class OwnerWorkController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK) {
             System.out.println("ok export");
-            pst = con.prepareStatement("UPDATE worklist SET status_name = ? , date_start = ? , date_done = ?");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
             pst.setString(2,null);
             pst.setString(3,null);
             pst.setString(1,"Not assign.");

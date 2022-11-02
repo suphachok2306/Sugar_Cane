@@ -66,11 +66,11 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusCrop() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Assigned.\" WHERE work_id = \"1\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
             updateData();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
             updateData();
                 /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
@@ -78,7 +78,7 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Done.\" WHERE work_id = \"1\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
             updateData();
         }
@@ -86,11 +86,11 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusRestoration() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Assigned.\" WHERE work_id = \"2\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"2\"");
             pst.executeUpdate();
             updateData();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Wait for check.\" WHERE work_id = \"2\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"2\"");
             pst.executeUpdate();
             updateData();
                 /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
@@ -98,7 +98,7 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Done.\" WHERE work_id = \"2\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"2\"");
             pst.executeUpdate();
             updateData();
         }
@@ -106,19 +106,19 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusCaring() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Assigned.\" WHERE work_id = \"3\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"3\"");
             pst.executeUpdate();
             updateData();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Wait for check.\" WHERE work_id = \"3\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"3\"");
             pst.executeUpdate();
             updateData();
                 /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE worklist SET status_name = \"Not pass and rework.\" WHERE work_id = \"3\"");
+                    pst = con.prepareStatement("UPDATE work SET status_name = \"Not pass and rework.\" WHERE work_id = \"3\"");
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Done.\" WHERE work_id = \"3\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"3\"");
             pst.executeUpdate();
             updateData();
         }
@@ -126,19 +126,19 @@ public class EmployeeWorkController implements Initializable {
 
     public void statusHarvest() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Assigned.\" WHERE work_id = \"4\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Assigned.\" WHERE work_id = \"4\"");
             pst.executeUpdate();
             updateData();
         } else if (selectedWork.getStatusName().equals("Assigned.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Wait for check.\" WHERE work_id = \"4\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"4\"");
             pst.executeUpdate();
             updateData();
                 /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE worklist SET status_name = \"Not pass and rework.\" WHERE work_id = \"4\"");
+                    pst = con.prepareStatement("UPDATE work SET status_name = \"Not pass and rework.\" WHERE work_id = \"4\"");
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE worklist SET status_name = \"Done.\" WHERE work_id = \"4\"");
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"4\"");
             pst.executeUpdate();
             updateData();
         }
@@ -154,8 +154,8 @@ public class EmployeeWorkController implements Initializable {
         //String sql = "SELECT work_name,status_name,date_start,date_done FROM worklist,statuswork,userwork WHERE status_name = \"Not assign.\"";
         //String sql ="SELECT work_name,status_name,date_start,date_done FROM worklist,statuswork,userwork GROUP BY work_name";
 
-        String sql = "SELECT work_name,status_name FROM worklist";
-        String sql2 = "SELECT user_id FROM users";
+        String sql = "SELECT work_name,status_name FROM work";
+        //String sql2 = "SELECT user_id FROM users";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();

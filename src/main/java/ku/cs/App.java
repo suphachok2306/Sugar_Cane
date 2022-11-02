@@ -19,7 +19,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this,stage,"Sugarcane");
         configRoute();
-        FXRouter.goTo("login");
+        FXRouter.goTo("owner");
 
     }
 
@@ -30,10 +30,10 @@ public class App extends Application {
     }
 
     private static void configRoute() {
-        FXRouter.when("owner", "ku/cs/owner.fxml","Sugar Cane");
-        FXRouter.when("employee", "ku/cs/employee.fxml","Sugar Cane");
         FXRouter.when("login","ku/cs/login.fxml","Sugarcane");
         FXRouter.when("register","ku/cs/register.fxml","Sugarcane");
+        FXRouter.when("employee","ku/cs/employee.fxml","Sugarcane");
+        FXRouter.when("owner","ku/cs/owner.fxml","Sugarcane");
     }
 
     public static void main(String[] args) {
