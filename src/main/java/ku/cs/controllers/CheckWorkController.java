@@ -15,6 +15,7 @@ import java.sql.SQLException;
 public class CheckWorkController {
     @FXML private Label workName,sDate,hTime,hTimeLabel;
 
+
     private Connection con = null;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
@@ -26,16 +27,18 @@ public class CheckWorkController {
     }
 
     public void initialize() {
+        this.selectedWork = (Work) FXRouter.getData();
         //hTime.setVisible(false);
         try {
             String SQL = "SELECT * FROM work";
             rs = con.prepareStatement(SQL).executeQuery();
             while (rs.next()) {
                 if (selectedWork.getWorkName().equals(rs.getString("work_name"))) {
-                    workName.setText(selectedWork.getWorkName());
-                    sDate.setText(selectedWork.getDateStart());
+                    workName.setText(rs.getString("work_name"));
+                    sDate.setText(rs.getString("date_start"));
                     if(selectedWork.getWorkName().equals("Harvest")){
                         hTime.setVisible(true);
+                        hTimeLabel.setVisible(true);
                         hTimeLabel.setText(rs.getString("harvested_times"));
                     }
                 }

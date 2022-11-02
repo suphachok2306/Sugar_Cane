@@ -195,7 +195,7 @@ public class OwnerWorkController implements Initializable {
                 error.show();
             }
             else {
-                FXRouter.goTo("check");
+                FXRouter.goTo("check",selectedWork);
             }
         } catch (IOException e) {
             e.printStackTrace();
