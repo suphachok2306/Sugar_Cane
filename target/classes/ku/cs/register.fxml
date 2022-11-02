@@ -23,8 +23,8 @@
       <Button layoutX="50.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="REGISTER" />
       <Button layoutX="591.0" layoutY="555.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
       <Text layoutX="65.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name    :" />
-      <Label fx:id="emailLabel" layoutX="296.0" layoutY="189.0" text="* มี email นี้แล้วในระบบ" textFill="RED" visible="false" />
-      <Label fx:id="usernameLabel" layoutX="296.0" layoutY="106.0" text="* มี username นี้แล้วในระบบ" textFill="RED" visible="false" />
-      <Label fx:id="warningLabel" layoutX="159.0" layoutY="266.0" text="กรอกข้อมูลไม่ครบ" textFill="RED" visible="false" />
+      <Label fx:id="emailLabel" layoutX="296.0" layoutY="189.0" text="* This email already been used" textFill="RED" visible="false" />
+      <Label fx:id="usernameLabel" layoutX="296.0" layoutY="106.0" text="* This username already been used" textFill="RED" visible="false" />
+      <Label fx:id="warningLabel" layoutX="159.0" layoutY="266.0" text="* Fill all info" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

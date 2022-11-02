@@ -11,6 +11,8 @@ public class Work {
     private SimpleStringProperty workName;
     private SimpleStringProperty statusName;
 
+    //public static String selectedWork;
+
     public Work(String workName, String statusName, String dateStart, String dateDone) {
         this.workName = new SimpleStringProperty(workName);
         this.statusName = new SimpleStringProperty(statusName);
@@ -44,4 +46,11 @@ public class Work {
 
     public void setDateDone (String dateDone){this.dateDone = new SimpleStringProperty(dateDone);}
 
+//    public static String getSelectedWork() {
+//        return selectedWork;
+//    }
+//
+//    public static void setSelectedWork(String selectedWork) {
+//        Work.selectedWork = selectedWork;
+//    }
 }

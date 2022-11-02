@@ -45,14 +45,14 @@ public class LoginController {
                 try {
                     FXRouter.goTo("owner");
                 } catch (IOException e) {
-                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.err.println("ไปที่หน้า owner ไม่ได้");
                     System.err.println("ให้ตรวจสอบการกำหนด route");
                 }
             } else if(role.equals("2")){
                 try {
                     FXRouter.goTo("employee");
                 } catch (IOException e) {
-                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.err.println("ไปที่หน้า employee ไม่ได้");
                     System.err.println("ให้ตรวจสอบการกำหนด route");
                 }
             }
@@ -72,6 +72,7 @@ public class LoginController {
                         return true;
                     }
                     else {
+                        nodata.setVisible(false);
                         wrongdata.setVisible(true);
                         return false;
                     }
