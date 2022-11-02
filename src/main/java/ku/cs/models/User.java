@@ -9,14 +9,12 @@ public class User {
     private String tel;
     private String role_id;
 
-    public User(String user_id, String u_name, String username, String password, String user_email, String tel, String role_id) {
-        this.user_id = user_id;
+    public User(String u_name, String username, String password, String user_email, String tel) {
         this.u_name = u_name;
         this.username = username;
         this.password = password;
         this.user_email = user_email;
         this.tel = tel;
-        this.role_id = role_id;
     }
 
     public String getUser_id() {

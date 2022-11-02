@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import ku.cs.models.User;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
+
+    private User currentUser;
+
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordField;
     @FXML private ChoiceBox<String> roleChoiceBox;
@@ -35,12 +40,6 @@ public class LoginController {
         if(userNameTextField.getText().equals("") || passwordField.getText().equals("")){
             missdata.setVisible(true);
         }else if(CheckUser()){
-//            try {
-//                FXRouter.goTo("owner");
-//            } catch (IOException e) {
-//                System.err.println("ไปที่หน้า owner ไม่ได้");
-//                System.err.println("ให้ตรวจสอบการกำหนด route");
-//            }
             System.out.println("gg");
             try {
                 FXRouter.goTo("register");
@@ -53,48 +52,26 @@ public class LoginController {
         }
     }
 
-    public boolean CheckUser(){
+    public boolean CheckUser() {
         try {
             String SQL = "SELECT * FROM users";
             rs = con.prepareStatement(SQL).executeQuery();
-            while (rs.next()){
-                if(userNameTextField.getText().equals(rs.getString("username"))) {
-                    if(passwordField.getText().equals(rs.getString("pass")))
+            while (rs.next()) {
+                if (userNameTextField.getText().equals(rs.getString("username"))) {
+                    if (passwordField.getText().equals(rs.getString("pass")))
                         return true;
                     else {
                         wrongdata.setVisible(true);
                         return false;
                     }
-                }else if(!userNameTextField.getText().equals(rs.getString("username"))){
+                } else if (!userNameTextField.getText().equals(rs.getString("username"))) {
                     nodata.setVisible(true);
                 }
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
-//        try {
-//            String SQL = "SELECT * FROM users WHERE username = '"+userNameTextField.getText()+"'";
-//            pst = con.prepareStatement(SQL);
-//            rs = pst.executeQuery();
-//            if(passwordField.getText().equals(rs.getString("pass"))){
-//                return true;
-//            }
-////            while (rs.next()){
-////                if(userNameTextField.getText().equals(rs.getString("username"))) {
-////                    if(passwordField.getText().equals(rs.getString("pass"))){
-////                        return true;
-////                    }else{
-////                        wrongdata.setVisible(true);
-////                    }
-////                }else{
-////                    nodata.setVisible(true);
-////                }
-////            }
-//        } catch (SQLException ex){
-//            ex.printStackTrace();
-//        }
-//        return false;
     }
 
     @FXML
