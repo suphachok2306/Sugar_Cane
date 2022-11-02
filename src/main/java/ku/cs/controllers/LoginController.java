@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import ku.cs.models.User;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -73,7 +74,6 @@ public class LoginController {
                         return true;
                     }
                     else {
-                        nodata.setVisible(false);
                         wrongdata.setVisible(true);
                         return false;
                     }
