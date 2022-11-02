@@ -43,5 +43,10 @@
             <Font name="Century" size="24.0" />
          </font>
       </Label>
+      <Button layoutX="40.0" layoutY="33.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
