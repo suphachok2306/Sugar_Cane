@@ -151,17 +151,24 @@ public class OwnerWorkController implements Initializable {
             error.show();
         }
         else {
+            if (selectedWork.getStatusName().equals("Assigned.")){
+                Alert error = new Alert(Alert.AlertType.INFORMATION, "Wait for the work from the employee to send it.");
+                error.show();
+            }
+
             if (selectedWork.getWorkName().equals("Crop")) {
-                statusCrop();
-                i+=1;
+                if (i == 1){
+                    statusCrop();
+                    i+=1;
+                }
             }
 
             if (selectedWork.getWorkName().equals("Restoration")) {
                 if (i == 2){
                     statusRestoration();
-                    i+=1; }
-                else {
-                    System.out.println(i + " gfhgfh");
+                    i+=1;
+                }
+                else if (selectedWork.getStatusName().equals("Not assign.")){
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
                     error.show();
                 }
@@ -170,8 +177,9 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork.getWorkName().equals("Caring")) {
                 if (i == 3){
                     statusCaring();
-                    i+=1; }
-                else {
+                    i+=1;
+                }
+                else if (selectedWork.getStatusName().equals("Not assign.")){
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
                     error.show();
                 }
@@ -182,7 +190,7 @@ public class OwnerWorkController implements Initializable {
                     statusHarvest();
                     i+=1;
                 }
-                else {
+                else if (selectedWork.getStatusName().equals("Not assign.")){
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
                     error.show();
                 }

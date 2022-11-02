@@ -83,9 +83,8 @@ public class EmployeeWorkController implements Initializable {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
             updateData();
-        } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
-            error.show();
+        }else if (selectedWork.getStatusName().equals("Done.")) {
+            System.out.println(i + " test");
         }
     }
 
@@ -97,13 +96,12 @@ public class EmployeeWorkController implements Initializable {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"2\"");
             pst.executeUpdate();
             updateData();
-                /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE worklist SET status_name = \"Not pass and rework.\" WHERE work_id = \"2\"");
-                    pst.executeUpdate();
-                    UpdateData();*/
-        } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
-            error.show();
+        }else if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"2\"");
+            pst.executeUpdate();
+            updateData();
+        }else if (selectedWork.getStatusName().equals("Done.")) {
+            System.out.println(i + " test");
         }
     }
 
@@ -115,13 +113,12 @@ public class EmployeeWorkController implements Initializable {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"3\"");
             pst.executeUpdate();
             updateData();
-                /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE work SET status_name = \"Not pass and rework.\" WHERE work_id = \"3\"");
-                    pst.executeUpdate();
-                    UpdateData();*/
-        } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
-            error.show();
+        }else if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"3\"");
+            pst.executeUpdate();
+            updateData();
+        }else if (selectedWork.getStatusName().equals("Done.")) {
+            System.out.println(i + " test");
         }
     }
 
@@ -133,20 +130,17 @@ public class EmployeeWorkController implements Initializable {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"4\"");
             pst.executeUpdate();
             updateData();
-                /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE work SET status_name = \"Not pass and rework.\" WHERE work_id = \"4\"");
-                    pst.executeUpdate();
-                    UpdateData();*/
-        } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
-            error.show();
+        }else if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"4\"");
+            pst.executeUpdate();
+            updateData();
+        }else if (selectedWork.getStatusName().equals("Done.")) {
+            System.out.println(i + " test");
         }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.currentUsername = (String) FXRouter.getData();
-        //userName.setText("USERNAME : "+ currentUser.getU_name());
-        //userID.setText("USERNAME : "+ currentUser.getU_name());
         userName.setText("USERNAME : "+ currentUsername);
         updateData();
     }
@@ -169,71 +163,91 @@ public class EmployeeWorkController implements Initializable {
 
     @FXML
     private void sendWork() throws SQLException {
-        if (selectedWork == null){
+        if (selectedWork == null) {
             Alert error = new Alert(Alert.AlertType.ERROR, " Please select work.");
             error.show();
-        }
-        else {
+        } else {
             if (selectedWork.getWorkName().equals("Crop")) {
                 statusCrop();
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
-                    System.out.println(selectedWork.getStatusName());
                     statusCrop();
-                    /*Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
-                    error.show();*/
-                }else if (selectedWork.getStatusName().equals("Done.")){
-                        i+=1;}
+                } else if (selectedWork.getStatusName().equals("Wait for check.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
+                    error.show();
+                } else if (selectedWork.getStatusName().equals("Done.")) {
+                    i = 2;
+                    System.out.println(i);
+                }
             }
 
             if (selectedWork.getWorkName().equals("Restoration")) {
-                if (i == 2){
+                if (i == 2) {
                     statusRestoration();
                 }
-                else {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
-                    error.show();
+                if (i == 1){
+                    if (selectedWork.getStatusName().equals("Assigned.")) {
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
+                        error.show();
+                    }
                 }
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    statusRestoration();
+                } else if (selectedWork.getStatusName().equals("Wait for check.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
                     error.show();
-                }else if (selectedWork.getStatusName().equals("Done.")){
-                    i+=1;
+                } else if (selectedWork.getStatusName().equals("Done.")) {
+                    i = 3;
+                    System.out.println(i);
                 }
             }
 
             if (selectedWork.getWorkName().equals("Caring")) {
-                if (i == 3){
+                if (i == 3) {
                     statusCaring();
                 }
-                else {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
-                    error.show();
+                if (i == 1 || i == 2){
+                    if (selectedWork.getStatusName().equals("Assigned.")) {
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
+                        error.show();
+                    }
                 }
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    statusCaring();
+                } else if (selectedWork.getStatusName().equals("Wait for check.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
                     error.show();
-                }else if (selectedWork.getStatusName().equals("Done.")){
-                    i+=1;
+                } else if (selectedWork.getStatusName().equals("Done.")) {
+                    i = 4;
+                    System.out.println(i);
                 }
             }
 
             if (selectedWork.getWorkName().equals("Harvest")) {
-                if (i == 4){
+                if (i == 4) {
                     statusHarvest();
                 }
-                else {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
-                    error.show();
+                if (i == 1 || i == 2 || i == 3){
+                    if (selectedWork.getStatusName().equals("Assigned.")) {
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
+                        error.show();
+                    }
                 }
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    statusHarvest();
+                } else if (selectedWork.getStatusName().equals("Wait for check.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
                     error.show();
-                }else if (selectedWork.getStatusName().equals("Done.")){
-                    i=0;
+                } else if (selectedWork.getStatusName().equals("Done.")) {
+                    i = 0;
+                    System.out.println(i);
                 }
             }
         }
     }
+
+
+
+
 
 
     @FXML
