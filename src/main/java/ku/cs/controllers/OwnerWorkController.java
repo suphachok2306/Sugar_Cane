@@ -161,6 +161,7 @@ public class OwnerWorkController implements Initializable {
                     statusRestoration();
                     i+=1; }
                 else {
+                    System.out.println(i + " gfhgfh");
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
                     error.show();
                 }
@@ -178,7 +179,9 @@ public class OwnerWorkController implements Initializable {
 
             if (selectedWork.getWorkName().equals("Harvest")) {
                 if (i == 4){
-                    statusHarvest();}
+                    statusHarvest();
+                    i+=1;
+                }
                 else {
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
                     error.show();
@@ -193,10 +196,15 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork == null){
                 Alert error = new Alert(Alert.AlertType.ERROR, " Please select work.");
                 error.show();
+<<<<<<< HEAD
             }else if (!selectedWork.getStatusName().equals("Wait for check.")) {
                 Alert error = new Alert(Alert.AlertType.ERROR, "Wait for farmer to finish works.");
                 error.show();
             } else if (selectedWork.getStatusName().equals("Wait for check.")) {
+=======
+            }
+            else {
+>>>>>>> 64ade15cda99d630cf26c8f382207383f65f224a
                 FXRouter.goTo("check",selectedWork);
             }
         } catch (IOException e) {
@@ -215,7 +223,7 @@ public class OwnerWorkController implements Initializable {
 
         if(result.get() == ButtonType.OK) {
 
-            i = 0;
+            i = 1;
             System.out.println("ok export" + "i = " + i);
 
             pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
