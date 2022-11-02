@@ -79,10 +79,10 @@ public class EmployeeWorkController implements Initializable {
             pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
             pst.executeUpdate();
             updateData();
-                /*}else if (selectedWork.getStatusName().equals("Wait for check.")) {
-                    pst = con.prepareStatement("UPDATE worklist SET status_name = \"Not pass and rework.\" WHERE work_id = \"1\"");
-                    pst.executeUpdate();
-                    UpdateData();*/
+        }else if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+            pst = con.prepareStatement("UPDATE work SET status_name = \"Wait for check.\" WHERE work_id = \"1\"");
+            pst.executeUpdate();
+            updateData();
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
             Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
             error.show();
@@ -177,8 +177,10 @@ public class EmployeeWorkController implements Initializable {
             if (selectedWork.getWorkName().equals("Crop")) {
                 statusCrop();
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
-                    error.show();
+                    System.out.println(selectedWork.getStatusName());
+                    statusCrop();
+                    /*Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    error.show();*/
                 }else if (selectedWork.getStatusName().equals("Done.")){
                         i+=1;}
             }
