@@ -25,8 +25,14 @@
       </Text>
       <Button layoutX="51.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleLoginButton" text="LOGIN" />
       <Button layoutX="582.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleRegisterButton" text="REGISTER" />
+<<<<<<< HEAD
       <Label fx:id="missdata" layoutX="116.0" layoutY="263.0" text="* Fill all info" textFill="RED" visible="false" />
       <Label fx:id="wrongdata" layoutX="264.0" layoutY="196.0" text="* Wrong Password" textFill="RED" visible="false" />
       <Label fx:id="nodata" layoutX="264.0" layoutY="144.0" text="* User not in data" textFill="RED" visible="false" />
+=======
+      <Label fx:id="missdata" layoutX="116.0" layoutY="263.0" text="* กรอกข้อมูลไม่ครบ" textFill="RED" visible="false" />
+      <Label fx:id="wrongdata" layoutX="264.0" layoutY="196.0" text="* ข้อมูลไม่ถูกต้อง" textFill="RED" visible="false" />
+      <Label fx:id="nodata" layoutX="264.0" layoutY="144.0" text="* ไม่มีข้อมูลไม่ระบบ" textFill="RED" visible="false" />
+>>>>>>> 938d2be68adc49c3231252b6d1d902ff7f755a11
    </children>
 </AnchorPane>

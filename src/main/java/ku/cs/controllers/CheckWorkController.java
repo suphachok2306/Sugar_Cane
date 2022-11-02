@@ -38,6 +38,7 @@ public class CheckWorkController {
                         hTime.setVisible(true);
                         hTimeLabel.setText(rs.getString("harvested_times"));
                     }
+                    break;
                 }
             }
         } catch (SQLException ex) {

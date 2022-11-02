@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import ku.cs.models.User;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,7 +14,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    private User currentUser;
+    private String currentUsername;
 
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordField;
@@ -32,7 +31,7 @@ public class LoginController {
     }
 
     @FXML
-    public void handleLoginButton(ActionEvent actionEvent){
+    public void handleLoginButton(ActionEvent actionEvent) throws IOException {
         missdata.setVisible(false);
         wrongdata.setVisible(false);
         nodata.setVisible(false);
@@ -50,8 +49,10 @@ public class LoginController {
                 }
             } else if(role.equals("2")){
                 try {
-                    FXRouter.goTo("employee");
+                    currentUsername = userNameTextField.getText();
+                    FXRouter.goTo("employee",currentUsername);
                 } catch (IOException e) {
+                    System.out.println(currentUsername + " TT");
                     System.err.println("ไปที่หน้า employee ไม่ได้");
                     System.err.println("ให้ตรวจสอบการกำหนด route");
                 }

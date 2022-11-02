@@ -222,7 +222,7 @@ public class OwnerWorkController implements Initializable {
             pst.setString(1,"Not assign.");
             pst.executeUpdate();
             updateData();
-            FXRouter.goTo("Summary");
+            //FXRouter.goTo("Summary");
         }
         if (result.get() == ButtonType.CANCEL){
             System.out.println("cancel export");
