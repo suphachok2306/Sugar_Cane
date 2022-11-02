@@ -84,9 +84,8 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"1\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
+            error.show();
         }
     }
 
@@ -103,9 +102,8 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"2\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
+            error.show();
         }
     }
 
@@ -122,9 +120,8 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"3\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
+            error.show();
         }
     }
 
@@ -141,9 +138,8 @@ public class EmployeeWorkController implements Initializable {
                     pst.executeUpdate();
                     UpdateData();*/
         } else if (selectedWork.getStatusName().equals("Wait for check.")) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_id = \"4\"");
-            pst.executeUpdate();
-            updateData();
+            Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to check works.");
+            error.show();
         }
     }
     @Override
@@ -180,35 +176,58 @@ public class EmployeeWorkController implements Initializable {
         else {
             if (selectedWork.getWorkName().equals("Crop")) {
                 statusCrop();
-                i+=1;
+                if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    error.show();
+                }else if (selectedWork.getStatusName().equals("Done.")){
+                        i+=1;}
             }
 
             if (selectedWork.getWorkName().equals("Restoration")) {
                 if (i == 2){
                     statusRestoration();
-                    i+=1; }
+                }
                 else {
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
                     error.show();
+                }
+                if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    error.show();
+                }else if (selectedWork.getStatusName().equals("Done.")){
+                    i+=1;
                 }
             }
 
             if (selectedWork.getWorkName().equals("Caring")) {
                 if (i == 3){
                     statusCaring();
-                    i+=1; }
+                }
                 else {
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
                     error.show();
+                }
+                if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    error.show();
+                }else if (selectedWork.getStatusName().equals("Done.")){
+                    i+=1;
                 }
             }
 
             if (selectedWork.getWorkName().equals("Harvest")) {
                 if (i == 4){
-                    statusHarvest();}
+                    statusHarvest();
+                }
                 else {
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
                     error.show();
+                }
+                if (selectedWork.getStatusName().equals("Not pass and rework.")) {
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Not pass and rework.");
+                    error.show();
+                }else if (selectedWork.getStatusName().equals("Done.")){
+                    i=0;
                 }
             }
         }
