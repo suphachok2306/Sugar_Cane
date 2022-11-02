@@ -4,7 +4,6 @@ import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import ku.cs.models.User;
 
@@ -20,9 +19,9 @@ public class LoginController {
 
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordField;
-    @FXML private ChoiceBox<String> roleChoiceBox;
     @FXML private Label missdata,wrongdata,nodata;
 
+    String role;
     private Connection con = null;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
@@ -41,11 +40,21 @@ public class LoginController {
             missdata.setVisible(true);
         }else if(CheckUser()){
             System.out.println("gg");
-            try {
-                FXRouter.goTo("register");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้า register ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกำหนด route");
+            System.out.println(role);
+            if(role.equals("1")){
+                try {
+                    FXRouter.goTo("owner");
+                } catch (IOException e) {
+                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.err.println("ให้ตรวจสอบการกำหนด route");
+                }
+            } else if(role.equals("2")){
+                try {
+                    FXRouter.goTo("employee");
+                } catch (IOException e) {
+                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.err.println("ให้ตรวจสอบการกำหนด route");
+                }
             }
         }else{
             System.out.println("no");
@@ -58,8 +67,10 @@ public class LoginController {
             rs = con.prepareStatement(SQL).executeQuery();
             while (rs.next()) {
                 if (userNameTextField.getText().equals(rs.getString("username"))) {
-                    if (passwordField.getText().equals(rs.getString("pass")))
+                    if (passwordField.getText().equals(rs.getString("pass"))) {
+                        role = rs.getString("role_id");
                         return true;
+                    }
                     else {
                         wrongdata.setVisible(true);
                         return false;
