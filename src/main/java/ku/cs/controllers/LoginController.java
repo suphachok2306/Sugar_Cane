@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-    private User currentUser;
+    private String currentUsername;
 
     @FXML private TextField userNameTextField;
     @FXML private TextField passwordField;
@@ -32,7 +32,7 @@ public class LoginController {
     }
 
     @FXML
-    public void handleLoginButton(ActionEvent actionEvent){
+    public void handleLoginButton(ActionEvent actionEvent) throws IOException {
         missdata.setVisible(false);
         wrongdata.setVisible(false);
         nodata.setVisible(false);
@@ -45,14 +45,16 @@ public class LoginController {
                 try {
                     FXRouter.goTo("owner");
                 } catch (IOException e) {
-                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.err.println("ไปที่หน้า owner ไม่ได้");
                     System.err.println("ให้ตรวจสอบการกำหนด route");
                 }
             } else if(role.equals("2")){
                 try {
-                    FXRouter.goTo("employee");
+                    currentUsername = userNameTextField.getText();
+                    FXRouter.goTo("employee",currentUsername);
                 } catch (IOException e) {
-                    System.err.println("ไปที่หน้า register ไม่ได้");
+                    System.out.println(currentUsername + " TT");
+                    System.err.println("ไปที่หน้า employee ไม่ได้");
                     System.err.println("ให้ตรวจสอบการกำหนด route");
                 }
             }

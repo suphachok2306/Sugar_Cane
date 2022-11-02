@@ -28,7 +28,8 @@ public class EmployeeWorkController implements Initializable {
 
     private Work selectedWork;
 
-    private User currentUser;
+    //private User currentUser;
+    private String currentUsername;
 
     private int i = 1; //ไว้เช็คปุ่ม Send
 
@@ -147,16 +148,16 @@ public class EmployeeWorkController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.currentUser = (User) FXRouter.getData();
+        this.currentUsername = (String) FXRouter.getData();
+        //userName.setText("USERNAME : "+ currentUser.getU_name());
         //userID.setText("USERNAME : "+ currentUser.getU_name());
+        userName.setText("USERNAME : "+ currentUsername);
         updateData();
     }
 
     public void showData() {
-        //userID.setText("USER_ID : "+ currentUser.getUser_id());
 
         String sql = "SELECT work_name,status_name FROM work";
-        //String sql2 = "SELECT user_id FROM users";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
