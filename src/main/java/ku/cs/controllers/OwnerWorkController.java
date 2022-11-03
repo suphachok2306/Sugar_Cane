@@ -58,7 +58,7 @@ public class OwnerWorkController implements Initializable {
     String DoneDate = dateWorkDone.format(DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a"));*/
 
 
-    String startDate = dateStartWork.format(DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a"));
+    String startDate = dateStartWork.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm a "));
 
     private ArrayList<Work> works;
     private ObservableList<Work> workObservableList;

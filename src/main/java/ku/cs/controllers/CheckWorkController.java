@@ -87,12 +87,21 @@ public class CheckWorkController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
+            System.out.println("fghgfhgfhfgh");
             //pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_name = '"+selectedWork.getWorkName()+"'");
-            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = ?");
+
+            //String harvesttime = rs.getString("harvested_times");
+            //System.out.println(rs.getString("harvested_times"));
+
+            //int h = Integer.parseInt(harvesttime)+1;
+//            int h = harvesttime+1;
+//            pst.setString(3,String.valueOf(h));
+            //pst.setInt(3,);
+            pst.setString(3,String.valueOf(1));
             pst.setString(2,DoneDate);
             pst.setString(1,"Done.");
-
-
+            pst.setString(4,selectedWork.getWorkName());
             pst.executeUpdate();
             try {
                 FXRouter.goTo("owner");
