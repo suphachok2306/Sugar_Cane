@@ -150,7 +150,7 @@ public class EmployeeWorkController implements Initializable {
 
     public void showData() {
 
-        String sql = "SELECT work_name,status_name,username FROM work,users";
+        String sql = "SELECT work_name,status_name,username FROM work,users GROUP BY work_id";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();

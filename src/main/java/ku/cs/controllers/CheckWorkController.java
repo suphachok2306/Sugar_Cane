@@ -86,22 +86,140 @@ public class CheckWorkController {
         alert.setContentText("Do you want to fix this assignment?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.get() == ButtonType.OK) {
-            //pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_name = '"+selectedWork.getWorkName()+"'");
-            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
-            pst.setString(2,DoneDate);
-            pst.setString(1,"Done.");
-            pst.executeUpdate();
-            try {
-                FXRouter.goTo("owner");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้า register ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกำหนด route");
+        try {
+            String SQL = "SELECT * FROM work";
+            rs = con.prepareStatement(SQL).executeQuery();
+            if (result.get() == ButtonType.OK) {
+                while (rs.next()) {
+                    if (selectedWork.getWorkName().equals(rs.getString("work_name"))) {
+                        pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
+                        //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = ?");
+                        if (!rs.getString("work_name").equals("Harvest")) {
+                            pst.setString(2, DoneDate);
+                            pst.setString(1, "Done.");
+                            pst.setString(3,rs.getString("harvested_times"));
+//                            pst.setString(4, selectedWork.getWorkName());
+                            pst.executeUpdate();
+                            try {
+                                FXRouter.goTo("owner");
+                            } catch (IOException e) {
+                                System.err.println("ไปที่หน้า register ไม่ได้");
+                                System.err.println("ให้ตรวจสอบการกำหนด route");
+                            }
+                            break;
+                        } else if (rs.getString("work_name").equals("Harvest")) {
+                            if (rs.getString("harvested_times").equals("0")) {
+                                pst.setString(3, String.valueOf(1));
+                                pst.setString(2, null);
+                                pst.setString(1,"Not assign.");
+                                pst.executeUpdate();
+                            } else if (rs.getString("harvested_times").equals("1")) {
+                                pst.setString(3, String.valueOf(2));
+                                pst.setString(2, null);
+                                pst.setString(1,"Not assign.");
+                                pst.executeUpdate();
+                            } else if (rs.getString("harvested_times").equals("2")) {
+                                pst.setString(3, String.valueOf(3));
+                                pst.setString(2, null);
+                                pst.setString(1,"Not assign.");
+                                pst.executeUpdate();
+                            } else if (rs.getString("harvested_times").equals("3")) {
+                                pst.setString(3, String.valueOf(4));
+                                pst.setString(2, DoneDate);
+                                pst.setString(1, "Done.");
+                                pst.executeUpdate();
+                            }
+                            try {
+                                FXRouter.goTo("owner");
+                            } catch (IOException e) {
+                                System.err.println("ไปที่หน้า register ไม่ได้");
+                                System.err.println("ให้ตรวจสอบการกำหนด route");
+                            }
+                        }
+                    }
+                }
+            }else if (result.get() == ButtonType.CANCEL) {
+                System.out.println("cancel export");
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        if (result.get() == ButtonType.CANCEL){
-            System.out.println("cancel export");
-        }
+
+//        while (rs.next()) {
+//            if (selectedWork.getWorkName().equals(rs.getString("work_name"))) {
+//                if (result.get() == ButtonType.OK) {
+//                    //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
+//                    pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = ?");
+//                    if(!rs.getString("work_name").equals("Harvest")){
+//                        pst.setString(2,DoneDate);
+//                        pst.setString(1,"Done.");
+//                        pst.setString(4,selectedWork.getWorkName());
+//                        pst.executeUpdate();
+//                        try {
+//                            FXRouter.goTo("owner");
+//                        } catch (IOException e) {
+//                            System.err.println("ไปที่หน้า register ไม่ได้");
+//                            System.err.println("ให้ตรวจสอบการกำหนด route");
+//                        }
+//                        break;
+//                    }else if(rs.getString("work_name").equals("Harvest")){
+//                        if(rs.getString("harvested_times").equals("0")){
+//                            pst.setString(3,String.valueOf(1));
+//                        }else if(rs.getString("harvested_times").equals("1")){
+//                            pst.setString(3,String.valueOf(2));
+//                        }else if(rs.getString("harvested_times").equals("2")){
+//                            pst.setString(3,String.valueOf(3));
+//                        }else if(rs.getString("harvested_times").equals("3")){
+//                            pst.setString(3,String.valueOf(4));
+//                            pst.setString(2,DoneDate);
+//                            pst.setString(1,"Done.");
+//                        }
+//                        try {
+//                            FXRouter.goTo("owner");
+//                        } catch (IOException e) {
+//                            System.err.println("ไปที่หน้า register ไม่ได้");
+//                            System.err.println("ให้ตรวจสอบการกำหนด route");
+//                        }
+//                        break;
+//                    }
+//                }
+//                if (result.get() == ButtonType.CANCEL){
+//                    System.out.println("cancel export");
+//                }
+//            }
+//        }
+
+//        if (result.get() == ButtonType.OK) {
+//            //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
+//            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = ?");
+//            if(selectedWork.getHarvestedTimes().equals("0")){
+//                pst.setString(3,String.valueOf(1));
+//                pst.setString(1,"Harvested 1/4.");
+//            }else if(selectedWork.getHarvestedTimes().equals("1")){
+//                pst.setString(3,String.valueOf(2));
+//                pst.setString(1,"Harvested 2/4.");
+//            }else if(selectedWork.getHarvestedTimes().equals("2")){
+//                pst.setString(3,String.valueOf(3));
+//                pst.setString(1,"Harvested 3/4.");
+//            }else if(selectedWork.getHarvestedTimes().equals("3")){
+//                pst.setString(3,String.valueOf(4));
+//                pst.setString(1,"Harvested 4/4.");
+//            }else {
+//                pst.setString(2,DoneDate);
+//                pst.setString(1,"Done.");
+//                pst.setString(4,selectedWork.getWorkName());
+//            }
+//            pst.executeUpdate();
+//            try {
+//                FXRouter.goTo("owner");
+//            } catch (IOException e) {
+//                System.err.println("ไปที่หน้า register ไม่ได้");
+//                System.err.println("ให้ตรวจสอบการกำหนด route");
+//            }
+//        }
+//        if (result.get() == ButtonType.CANCEL){
+//            System.out.println("cancel export");
+//        }
     }
 
     @FXML

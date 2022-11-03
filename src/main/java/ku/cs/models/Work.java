@@ -10,6 +10,7 @@ public class Work {
 
     private SimpleStringProperty workName;
     private SimpleStringProperty statusName;
+    private SimpleStringProperty harvestedTimes;
 
     //public static String selectedWork;
 
@@ -20,10 +21,13 @@ public class Work {
         this.dateDone = new SimpleStringProperty(dateDone);
     }
 
+
     public Work(String workName, String statusName) {
         this.workName = new SimpleStringProperty(workName);
         this.statusName = new SimpleStringProperty(statusName);
     }
+
+
 
 
     public String getWorkID () {return workID.get();}
@@ -46,7 +50,15 @@ public class Work {
 
     public void setDateDone (String dateDone){this.dateDone = new SimpleStringProperty(dateDone);}
 
-//    public static String getSelectedWork() {
+    public String getHarvestedTimes () {
+        return harvestedTimes.get();
+    }
+
+    public void setHarvestedTimes(String harvestedTimes) {
+        this.harvestedTimes = new SimpleStringProperty(harvestedTimes);
+    }
+
+    //    public static String getSelectedWork() {
 //        return selectedWork;
 //    }
 //
