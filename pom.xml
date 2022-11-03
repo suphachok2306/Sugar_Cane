@@ -2,21 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ku.cs</groupId>
-<<<<<<< HEAD
-    <artifactId>cs211-431-project</artifactId>
-=======
-    <artifactId>unknownparty_project_jar</artifactId>
->>>>>>> 5e42ec86579cd05025490ad7a33cf9cb0ddb6b4b
+    <artifactId>SA-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-<<<<<<< HEAD
         <project.mainClass>${project.groupId}.App</project.mainClass>
-=======
-        <project.mainClass>${project.groupId}.Main</project.mainClass>
->>>>>>> 5e42ec86579cd05025490ad7a33cf9cb0ddb6b4b
     </properties>
     <dependencies>
         <dependency>
@@ -29,10 +21,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>16</version>
         </dependency>
-<<<<<<< HEAD
-
-=======
->>>>>>> 5e42ec86579cd05025490ad7a33cf9cb0ddb6b4b
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
