@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ku.cs.models.User;
 import ku.cs.models.Work;
 import java.io.IOException;
 import java.net.URL;
@@ -142,19 +143,25 @@ public class EmployeeWorkController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.currentUsername = (String) FXRouter.getData();
-        userName.setText("USERNAME : "+ currentUsername);
+
+        //userName.setText("USERNAME : "+ currentUsername);
         updateData();
     }
 
     public void showData() {
 
-        String sql = "SELECT work_name,status_name FROM work";
+        String sql = "SELECT work_name,status_name,username FROM work,users";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 
             works = new ArrayList<>();
+
             while (rs.next()) {
+                if (rs.getString("username").equals(currentUsername)) {
+                    userName.setText(rs.getString("username"));
+                }
+
                 if (rs.getString("work_name").equals("Crop")){
                     if (rs.getString("status_name").equals("Done.")){
                         i = 2;}
