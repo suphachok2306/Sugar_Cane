@@ -32,7 +32,7 @@ public class CheckWorkController {
     }
 
     private LocalDateTime dateWorkDone = LocalDateTime.now();
-    String DoneDate = dateWorkDone.format(DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a"));
+    String DoneDate = dateWorkDone.format(DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm a "));
 
     public void initialize() {
         this.selectedWork = (Work) FXRouter.getData();
@@ -110,17 +110,17 @@ public class CheckWorkController {
                         } else if (rs.getString("work_name").equals("Harvest")) {
                             if (rs.getString("harvested_times").equals("0")) {
                                 pst.setString(3, String.valueOf(1));
-                                pst.setString(2, null);
+                                pst.setString(2, DoneDate);
                                 pst.setString(1,"Done.");
                                 pst.executeUpdate();
                             } else if (rs.getString("harvested_times").equals("1")) {
                                 pst.setString(3, String.valueOf(2));
-                                pst.setString(2, null);
+                                pst.setString(2, DoneDate);
                                 pst.setString(1,"Done.");
                                 pst.executeUpdate();
                             } else if (rs.getString("harvested_times").equals("2")) {
                                 pst.setString(3, String.valueOf(3));
-                                pst.setString(2, null);
+                                pst.setString(2, DoneDate);
                                 pst.setString(1,"Done.");
                                 pst.executeUpdate();
                             } else if (rs.getString("harvested_times").equals("3")) {
