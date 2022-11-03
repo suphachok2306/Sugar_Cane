@@ -73,13 +73,13 @@ public class LoginController {
                     if (password.getText().equals(rs.getString("pass"))) {
                         role = rs.getString("role_id");
                         return true;
+                    }else if (!userNameTextField.getText().equals(rs.getString("username"))) {
+                        nodata.setVisible(true);
                     }
                     else {
                         wrongdata.setVisible(true);
                         return false;
                     }
-                } else if (!userNameTextField.getText().equals(rs.getString("username"))) {
-                    nodata.setVisible(true);
                 }
             }
         } catch (SQLException ex) {

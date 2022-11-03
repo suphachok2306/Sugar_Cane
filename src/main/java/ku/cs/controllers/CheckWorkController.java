@@ -83,7 +83,7 @@ public class CheckWorkController {
     public void passButton(ActionEvent actionEvent) throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
-        alert.setContentText("Do you want to fix this assignment?");
+        alert.setContentText("Do you want to finish this assignment?");
         Optional<ButtonType> result = alert.showAndWait();
 
         try {
