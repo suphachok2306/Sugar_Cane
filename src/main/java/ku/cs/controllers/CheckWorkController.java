@@ -91,6 +91,8 @@ public class CheckWorkController {
             pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
             pst.setString(2,DoneDate);
             pst.setString(1,"Done.");
+
+
             pst.executeUpdate();
             try {
                 FXRouter.goTo("owner");

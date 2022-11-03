@@ -47,6 +47,10 @@ public class OwnerWorkController implements Initializable {
 
     private int i = 1; //ไว้เช็คปุ่ม Confirm
 
+    private int harvestedTimes = 1;
+
+    private int countDoneForExport = 1;
+
 
     private LocalDateTime dateStartWork = LocalDateTime.now();
     //ใส่ไว้ในหน้า check
@@ -129,18 +133,50 @@ public class OwnerWorkController implements Initializable {
     }
 
     public void showData() {
-        String sql = "SELECT work_name,status_name,date_start,date_done FROM work";
+        String sql = "SELECT work_name,status_name,date_start,date_done,harvested_times FROM work";
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
 
             works = new ArrayList<>();
             while (rs.next()) {
+                //////////harvestedTimes
+                if (rs.getString("harvested_times").equals("1")){
+                    harvestedTimes = 1;
+                }
+                else if (rs.getString("harvested_times").equals("2")){
+                    harvestedTimes = 2;
+                }
+                else if (rs.getString("harvested_times").equals("3")){
+                    harvestedTimes = 3;
+                }
+                else if (rs.getString("harvested_times").equals("4")){
+                    harvestedTimes = 4;
+                }
+
+                ////////countDoneForExport
+
+                if (rs.getString("work_name").equals("Crop")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        countDoneForExport = 2;}
+
+                }else if (rs.getString("work_name").equals("Restoration")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        countDoneForExport = 3;}
+                }else if (rs.getString("work_name").equals("Caring")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        countDoneForExport = 4;}
+                }else if (rs.getString("work_name").equals("Harvest")){
+                    if (rs.getString("status_name").equals("Done.")){
+                    }
+                }
+
+
+                /////////////i
                 if (rs.getString("work_name").equals("Crop")){
                     if (!rs.getString("status_name").equals("Not assign.")){
                         i = 2;}
-                    /*if (rs.getString("status_name").equals("Assigned.")){
-                        i = 2;}*/
+
                 }else if (rs.getString("work_name").equals("Restoration")){
                     if (!rs.getString("status_name").equals("Not assign.")){
                         i = 3;}
@@ -152,9 +188,12 @@ public class OwnerWorkController implements Initializable {
                         }
                 }
 
+                //////////////tableView
+
                 works.add(new Work(rs.getString("work_name"),rs.getString("status_name")
                         ,rs.getString("date_start"),rs.getString("date_done")));
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(OwnerWorkController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,28 +278,58 @@ public class OwnerWorkController implements Initializable {
 
     @FXML
     private void exportSugarCane() throws SQLException, IOException {
+        if (countDoneForExport == 4){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
-        alert.setContentText("Do you want to export sugar cane ?");
+        alert.setContentText("Do you want to export sugar cane " + harvestedTimes + " /" + " 4 ?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        //if(harvestTimes == 4)
+        if (harvestedTimes == 1 || harvestedTimes == 4){
+            if(result.get() == ButtonType.OK) {
+                i = 1;
+                System.out.println("ok export" + "i = " + i);
 
-        if(result.get() == ButtonType.OK) {
+                System.out.println(harvestedTimes + " test1");
 
-            i = 1;
-            System.out.println("ok export" + "i = " + i);
+                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
+                pst.setString(2,null);
+                pst.setString(3,null);
+                pst.setString(1,"Not assign.");
+                pst.executeUpdate();
+                updateData();
+                //FXRouter.goTo("Summary");
+            }
+            if (result.get() == ButtonType.CANCEL){
+                System.out.println("cancel export");
+            }
+        }else if (harvestedTimes == 2 || harvestedTimes == 3){
+            if(result.get() == ButtonType.OK) {
+                i = 1;
+                System.out.println("ok export" + "i = " + i);
 
-            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
-            pst.setString(2,null);
-            pst.setString(3,null);
-            pst.setString(1,"Not assign.");
-            pst.executeUpdate();
-            updateData();
-            //FXRouter.goTo("Summary");
+                System.out.println(harvestedTimes + " test2");
+
+                //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
+                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?  WHERE work_id = \"2\" OR work_id = \"3\" OR work_id = \"4\"");
+                pst.setString(2,null);
+                pst.setString(3,null);
+                pst.setString(1,"Not assign.");
+                pst.executeUpdate();
+                updateData();
+            }
+            if (result.get() == ButtonType.CANCEL){
+                System.out.println("cancel export");
+            }
         }
-        if (result.get() == ButtonType.CANCEL){
-            System.out.println("cancel export");
+
+        }
+        else {
+            Alert alertExport = new Alert(Alert.AlertType.ERROR);
+            alertExport.setTitle("");
+            alertExport.setContentText("Complete all works first.");
+            alertExport.show();
+
+            System.out.println(countDoneForExport + "test3");
         }
     }
 
