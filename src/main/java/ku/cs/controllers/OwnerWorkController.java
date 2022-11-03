@@ -142,15 +142,16 @@ public class OwnerWorkController implements Initializable {
             while (rs.next()) {
                 //////////harvestedTimes
                 if (rs.getString("harvested_times").equals("1")){
-                    harvestedTimes = 2;
+                    harvestedTimes = 1;
                 }
                 else if (rs.getString("harvested_times").equals("2")){
-                    harvestedTimes = 3;
+                    harvestedTimes = 2;
                 }
                 else if (rs.getString("harvested_times").equals("3")){
-                    harvestedTimes = 4;
+                    harvestedTimes = 3;
                 }
                 else if (rs.getString("harvested_times").equals("4")){
+                    harvestedTimes = 4;
                     System.out.println(harvestedTimes + " check");
                 }
 
@@ -158,17 +159,17 @@ public class OwnerWorkController implements Initializable {
 
                 if (rs.getString("work_name").equals("Crop")){
                     if (rs.getString("status_name").equals("Done.")){
-                        countDoneForExport = 2;}
+                        countDoneForExport = 1;}
 
                 }else if (rs.getString("work_name").equals("Restoration")){
                     if (rs.getString("status_name").equals("Done.")){
-                        countDoneForExport = 3;}
+                        countDoneForExport = 2;}
                 }else if (rs.getString("work_name").equals("Caring")){
                     if (rs.getString("status_name").equals("Done.")){
-                        countDoneForExport = 4;}
+                        countDoneForExport = 3;}
                 }else if (rs.getString("work_name").equals("Harvest")){
                     if (rs.getString("status_name").equals("Done.")){
-                    }
+                        countDoneForExport = 4;}
                 }
 
 
@@ -281,7 +282,7 @@ public class OwnerWorkController implements Initializable {
         if (countDoneForExport == 4){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
-        alert.setContentText("Do you want to export sugar cane " + (harvestedTimes - 1) + " /" + " 4 ?");
+        alert.setContentText("Do you want to export sugar cane " + (harvestedTimes) + " /" + " 4 ?");
         System.out.println(harvestedTimes);
         Optional<ButtonType> result = alert.showAndWait();
 
@@ -289,10 +290,10 @@ public class OwnerWorkController implements Initializable {
             if(result.get() == ButtonType.OK) {
                 i = 1;
                 System.out.println("ok export" + "i = " + i);
-
                 System.out.println(harvestedTimes + " test1");
 
-                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
+                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?  WHERE work_id = \"2\" OR work_id = \"3\" OR work_id = \"4\"");
+                //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ? ");
                 pst.setString(2,null);
                 pst.setString(3,null);
                 pst.setString(1,"Not assign.");
@@ -321,27 +322,28 @@ public class OwnerWorkController implements Initializable {
             if (result.get() == ButtonType.CANCEL){
                 System.out.println("cancel export");
             }
-        }else if (harvestedTimes == 4){
+        }
+
+        else if (harvestedTimes == 4){
             if(result.get() == ButtonType.OK) {
                 i = 1;
                 System.out.println("ok export" + "i = " + i);
 
-                System.out.println(harvestedTimes + " test1");
+                System.out.println(harvestedTimes + " test2");
 
-                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ? , harvest_times = ?");
+                //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
+                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?, harvested_times = \"0\" ");
                 pst.setString(2,null);
                 pst.setString(3,null);
                 pst.setString(1,"Not assign.");
-                pst.setString(4,"0");
+
                 pst.executeUpdate();
                 updateData();
-                //FXRouter.goTo("Summary");
             }
             if (result.get() == ButtonType.CANCEL){
                 System.out.println("cancel export");
             }
         }
-
         }
         else {
             Alert alertExport = new Alert(Alert.AlertType.ERROR);
