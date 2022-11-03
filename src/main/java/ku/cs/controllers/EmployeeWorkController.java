@@ -29,13 +29,9 @@ public class EmployeeWorkController implements Initializable {
 
     private String currentUsername;
 
-    private int i = 1;
-    private int p = 2;
-    private int po = 3;
-    private int por = 4;
 
 
-    //private int i = 1; //ไว้เช็คปุ่ม Send
+    private int i = 1; //ไว้เช็คปุ่ม Send
 
     @FXML private Label userName;
 
@@ -75,6 +71,7 @@ public class EmployeeWorkController implements Initializable {
         });
     }
 
+
     public void statusCrop() throws SQLException {
         if (selectedWork.getStatusName().equals("Not assign.")) {
             Alert error = new Alert(Alert.AlertType.ERROR, "Waiting for the farm owner to assign works.");
@@ -88,9 +85,7 @@ public class EmployeeWorkController implements Initializable {
             pst.executeUpdate();
             updateData();
         }else if (selectedWork.getStatusName().equals("Done.")) {
-            p = 2;
-            //i = 2;
-            System.out.println(p + " test");
+            //System.out.println(p + " test");
         }
     }
 
@@ -107,9 +102,7 @@ public class EmployeeWorkController implements Initializable {
             pst.executeUpdate();
             updateData();
         }else if (selectedWork.getStatusName().equals("Done.")) {
-            //i = 3;
-            po = 3;
-            System.out.println(po + " test");
+            //System.out.println(po + " test");
         }
     }
 
@@ -126,9 +119,7 @@ public class EmployeeWorkController implements Initializable {
             pst.executeUpdate();
             updateData();
         }else if (selectedWork.getStatusName().equals("Done.")) {
-            //i = 4;
-            por = 4;
-            System.out.println(por + " test");
+            //System.out.println(por + " test");
         }
     }
 
@@ -145,13 +136,7 @@ public class EmployeeWorkController implements Initializable {
             pst.executeUpdate();
             updateData();
         }else if (selectedWork.getStatusName().equals("Done.")) {
-            //i = 0;
-            p = 0;
-            po = 0;
-            por = 0;
-            System.out.println(p + " test");
-            System.out.println(po + " test2");
-            System.out.println(por + " test3");
+            //System.out.println(p + " test");
         }
     }
     @Override
@@ -170,6 +155,23 @@ public class EmployeeWorkController implements Initializable {
 
             works = new ArrayList<>();
             while (rs.next()) {
+                if (rs.getString("work_name").equals("Crop")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        i = 2;}
+                }
+                else if (rs.getString("work_name").equals("Restoration")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        i = 3;}
+                }
+                else if (rs.getString("work_name").equals("Caring")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        i = 4;}
+                }
+                else if (rs.getString("work_name").equals("Harvest")){
+                    if (rs.getString("status_name").equals("Done.")){
+                        }
+                }
+
                 works.add(new Work(rs.getString("work_name"),rs.getString("status_name")));
             }
         } catch (SQLException ex) {
@@ -197,13 +199,12 @@ public class EmployeeWorkController implements Initializable {
             }
 
             if (selectedWork.getWorkName().equals("Restoration")) {
-                //if (i == 2) {
-                if (p == 2) {
+                if (i == 2) {
                     //System.out.println(i);
                     statusRestoration();
                 }
                 if (i == 1){
-                    //System.out.println(i);
+                    System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
                         Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
                         error.show();
@@ -221,12 +222,11 @@ public class EmployeeWorkController implements Initializable {
             }
 
             if (selectedWork.getWorkName().equals("Caring")) {
-                //if (i == 3) {
-                if (po == 3){
+                if (i == 3) {
                     statusCaring();
                 }
                 if (i == 1 || i == 2){
-                    //System.out.println(i);
+                    System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
                         Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
                         error.show();
@@ -244,12 +244,11 @@ public class EmployeeWorkController implements Initializable {
             }
 
             if (selectedWork.getWorkName().equals("Harvest")) {
-                //if (i == 4) {
-                if (por == 4){
+                if (i == 4) {
                     statusHarvest();
                 }
-                if (i == 1 || i == 2 || i == 3 || i == 0){
-                    //System.out.println(i);
+                if (i == 1 || i == 2 || i == 3 ){
+                    System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
                         Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
                         error.show();

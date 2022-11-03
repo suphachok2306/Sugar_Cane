@@ -136,6 +136,22 @@ public class OwnerWorkController implements Initializable {
 
             works = new ArrayList<>();
             while (rs.next()) {
+                if (rs.getString("work_name").equals("Crop")){
+                    if (!rs.getString("status_name").equals("Not assign.")){
+                        i = 2;}
+                    /*if (rs.getString("status_name").equals("Assigned.")){
+                        i = 2;}*/
+                }else if (rs.getString("work_name").equals("Restoration")){
+                    if (!rs.getString("status_name").equals("Not assign.")){
+                        i = 3;}
+                }else if (rs.getString("work_name").equals("Caring")){
+                    if (!rs.getString("status_name").equals("Not assign.")){
+                        i = 4;}
+                }else if (rs.getString("work_name").equals("Harvest")){
+                    if (!rs.getString("status_name").equals("Not assign.")){
+                        }
+                }
+
                 works.add(new Work(rs.getString("work_name"),rs.getString("status_name")
                         ,rs.getString("date_start"),rs.getString("date_done")));
             }
@@ -159,16 +175,17 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork.getWorkName().equals("Crop")) {
                 if (i == 1){
                     statusCrop();
-                    i+=1;
+                    //i = 2;
                 }
             }
 
             if (selectedWork.getWorkName().equals("Restoration")) {
                 if (i == 2){
                     statusRestoration();
-                    i+=1;
+                    //i = 3;
                 }
                 else if (selectedWork.getStatusName().equals("Not assign.")){
+                    System.out.println(i);
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
                     error.show();
                 }
@@ -177,9 +194,10 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork.getWorkName().equals("Caring")) {
                 if (i == 3){
                     statusCaring();
-                    i+=1;
+                    //i = 4;
                 }
                 else if (selectedWork.getStatusName().equals("Not assign.")){
+                    System.out.println(i);
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
                     error.show();
                 }
@@ -188,9 +206,10 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork.getWorkName().equals("Harvest")) {
                 if (i == 4){
                     statusHarvest();
-                    i+=1;
                 }
                 else if (selectedWork.getStatusName().equals("Not assign.")){
+                    System.out.println(i);
+                    System.out.println(i + "  dfgdf");
                     Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
                     error.show();
                 }
