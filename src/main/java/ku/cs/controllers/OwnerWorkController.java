@@ -223,8 +223,13 @@ public class OwnerWorkController implements Initializable {
             if (selectedWork == null){
                 Alert error = new Alert(Alert.AlertType.ERROR, " Please select work.");
                 error.show();
-            }
-            else {
+            }else if (selectedWork.getStatusName().equals("Done.")) {
+                Alert error = new Alert(Alert.AlertType.ERROR, "This work already finish.");
+                error.show();
+            }else if (!selectedWork.getStatusName().equals("Wait for check.")) {
+                Alert error = new Alert(Alert.AlertType.ERROR, "Wait for farmer to finish works.");
+                error.show();
+            } else if (selectedWork.getStatusName().equals("Wait for check.")) {
                 FXRouter.goTo("check",selectedWork);
             }
         } catch (IOException e) {
