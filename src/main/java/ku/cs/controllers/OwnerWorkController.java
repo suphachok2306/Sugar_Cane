@@ -282,9 +282,10 @@ public class OwnerWorkController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setContentText("Do you want to export sugar cane " + (harvestedTimes - 1) + " /" + " 4 ?");
+        System.out.println(harvestedTimes);
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (harvestedTimes == 1 || harvestedTimes == 4){
+        if (harvestedTimes == 1){
             if(result.get() == ButtonType.OK) {
                 i = 1;
                 System.out.println("ok export" + "i = " + i);
@@ -316,6 +317,25 @@ public class OwnerWorkController implements Initializable {
                 pst.setString(1,"Not assign.");
                 pst.executeUpdate();
                 updateData();
+            }
+            if (result.get() == ButtonType.CANCEL){
+                System.out.println("cancel export");
+            }
+        }else if (harvestedTimes == 4){
+            if(result.get() == ButtonType.OK) {
+                i = 1;
+                System.out.println("ok export" + "i = " + i);
+
+                System.out.println(harvestedTimes + " test1");
+
+                pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ? , harvest_times = ?");
+                pst.setString(2,null);
+                pst.setString(3,null);
+                pst.setString(1,"Not assign.");
+                pst.setString(4,"0");
+                pst.executeUpdate();
+                updateData();
+                //FXRouter.goTo("Summary");
             }
             if (result.get() == ButtonType.CANCEL){
                 System.out.println("cancel export");
