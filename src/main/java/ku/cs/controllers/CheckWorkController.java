@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CheckWorkController {
     @FXML private Label workName,sDate,hTime,hTimeLabel;
@@ -28,6 +30,9 @@ public class CheckWorkController {
     public CheckWorkController() {
         con = Connect.ConnectDB();
     }
+
+    private LocalDateTime dateWorkDone = LocalDateTime.now();
+    String DoneDate = dateWorkDone.format(DateTimeFormatter.ofPattern("EEEE, MMM dd, yyyy HH:mm:ss a"));
 
     public void initialize() {
         this.selectedWork = (Work) FXRouter.getData();
@@ -82,7 +87,10 @@ public class CheckWorkController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.get() == ButtonType.OK) {
-            pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_name = '"+selectedWork.getWorkName()+"'");
+            //pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_name = '"+selectedWork.getWorkName()+"'");
+            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? WHERE work_name = '"+selectedWork.getWorkName()+"'");
+            pst.setString(2,DoneDate);
+            pst.setString(1,"Done.");
             pst.executeUpdate();
             try {
                 FXRouter.goTo("owner");
