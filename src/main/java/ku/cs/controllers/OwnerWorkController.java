@@ -142,16 +142,16 @@ public class OwnerWorkController implements Initializable {
             while (rs.next()) {
                 //////////harvestedTimes
                 if (rs.getString("harvested_times").equals("1")){
-                    harvestedTimes = 1;
-                }
-                else if (rs.getString("harvested_times").equals("2")){
                     harvestedTimes = 2;
                 }
-                else if (rs.getString("harvested_times").equals("3")){
+                else if (rs.getString("harvested_times").equals("2")){
                     harvestedTimes = 3;
                 }
-                else if (rs.getString("harvested_times").equals("4")){
+                else if (rs.getString("harvested_times").equals("3")){
                     harvestedTimes = 4;
+                }
+                else if (rs.getString("harvested_times").equals("4")){
+                    System.out.println(harvestedTimes + " check");
                 }
 
                 ////////countDoneForExport
@@ -281,7 +281,7 @@ public class OwnerWorkController implements Initializable {
         if (countDoneForExport == 4){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
-        alert.setContentText("Do you want to export sugar cane " + harvestedTimes + " /" + " 4 ?");
+        alert.setContentText("Do you want to export sugar cane " + (harvestedTimes - 1) + " /" + " 4 ?");
         Optional<ButtonType> result = alert.showAndWait();
 
         if (harvestedTimes == 1 || harvestedTimes == 4){

@@ -81,39 +81,48 @@ public class CheckWorkController {
     }
     @FXML
     public void passButton(ActionEvent actionEvent) throws SQLException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
-        alert.setContentText("Do you want to fix this assignment?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == ButtonType.OK) {
-            System.out.println("fghgfhgfhfgh");
-            //pst = con.prepareStatement("UPDATE work SET status_name = \"Done.\" WHERE work_name = '"+selectedWork.getWorkName()+"'");
-            pst = con.prepareStatement("UPDATE work SET status_name = ? , date_done = ? , harvested_times = ? WHERE work_name = ?");
-
-            //String harvesttime = rs.getString("harvested_times");
-            //System.out.println(rs.getString("harvested_times"));
-
-            //int h = Integer.parseInt(harvesttime)+1;
-//            int h = harvesttime+1;
-//            pst.setString(3,String.valueOf(h));
-            //pst.setInt(3,);
-            pst.setString(3,String.valueOf(1));
-            pst.setString(2,DoneDate);
-            pst.setString(1,"Done.");
-            pst.setString(4,selectedWork.getWorkName());
-            pst.executeUpdate();
-            try {
-                FXRouter.goTo("owner");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้า register ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกำหนด route");
+        System.out.println("test");
+        try {
+            String SQL = "SELECT * FROM work";
+            rs = con.prepareStatement(SQL).executeQuery();
+            while (rs.next()) {
+                System.out.println("test1");
+                if (rs.getString("harvested_times").equals("0")){
+                    pst = con.prepareStatement("UPDATE work SET status_name = ?, date_done = ?, harvested_times = ? WHERE harvested_times = \"0\"");
+                    pst.setString(1,"Done.");
+                    pst.setString(2,DoneDate);
+                    pst.setString(3,String.valueOf(1));
+                    pst.executeUpdate();
+                }
+                else if (rs.getString("harvested_times").equals("1")){
+                    pst = con.prepareStatement("UPDATE work SET status_name = ?, date_done = ?, harvested_times = ? WHERE harvested_times = \"1\"");
+                    pst.setString(1,"Done.");
+                    pst.setString(2,DoneDate);
+                    pst.setString(3,String.valueOf(2));
+                    pst.executeUpdate();
+                }
+                else if (rs.getString("harvested_times").equals("2")){
+                    pst = con.prepareStatement("UPDATE work SET status_name = ?, date_done = ?, harvested_times = ? WHERE harvested_times = \"2\"");
+                    pst.setString(1,"Done.");
+                    pst.setString(2,DoneDate);
+                    pst.setString(3,String.valueOf(3));
+                    pst.executeUpdate();
+                }
+                else if (rs.getString("harvested_times").equals("4")){
+                    pst = con.prepareStatement("UPDATE work SET status_name = ?, date_done = ?, harvested_times = ? WHERE harvested_times = \"3\"");
+                    pst.setString(1,"Done.");
+                    pst.setString(2,DoneDate);
+                    pst.setString(3,String.valueOf(4));
+                    pst.executeUpdate();
+                    //System.out.println(harvestedTimes + " check");
+                }
             }
-        }
-        if (result.get() == ButtonType.CANCEL){
-            System.out.println("cancel export");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
+
+
 
     @FXML
     public void backButton(ActionEvent actionEvent) {
