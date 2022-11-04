@@ -42,8 +42,6 @@ public class OwnerWorkController implements Initializable {
     @FXML
     public TableColumn<Work, String> dateDone;
 
-    @FXML
-     private Label times;
 
     private int i = 1; //ไว้เช็คปุ่ม Confirm
 
@@ -76,7 +74,6 @@ public class OwnerWorkController implements Initializable {
         statusName.setCellValueFactory(new PropertyValueFactory<>("StatusName"));
         dateStart.setCellValueFactory(new PropertyValueFactory<>("DateStart"));
         dateDone.setCellValueFactory(new PropertyValueFactory<>("DateDone"));
-
         showData();
         workObservableList = FXCollections.observableArrayList(works);
         tableView.setItems(workObservableList);
@@ -129,8 +126,9 @@ public class OwnerWorkController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        times.setText(String.valueOf(harvestedTimes) + " / 4");
         updateData();
+
+        //times.setText((harvestedTimes) + " / 4");
     }
 
     public void showData() {
@@ -153,7 +151,8 @@ public class OwnerWorkController implements Initializable {
                 }
                 else if (rs.getString("harvested_times").equals("4")){
                     harvestedTimes = 4;
-                    System.out.println(harvestedTimes + " check");
+                }else if (rs.getString("harvested_times").equals("0")){
+                    harvestedTimes = 0;
                 }
 
                 ////////countDoneForExport
@@ -171,6 +170,9 @@ public class OwnerWorkController implements Initializable {
                 }else if (rs.getString("work_name").equals("Harvest")){
                     if (rs.getString("status_name").equals("Done.")){
                         countDoneForExport = 4;}
+
+                if (!rs.getString("status_name").equals("Done.")){
+                        countDoneForExport = 0;}
                 }
 
 
@@ -281,6 +283,7 @@ public class OwnerWorkController implements Initializable {
     @FXML
     private void exportSugarCane() throws SQLException, IOException {
         if (countDoneForExport == 4){
+            System.out.println(countDoneForExport + "countexport");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setContentText("Do you want to export sugar cane " + (harvestedTimes) + " /" + " 4 ?");
@@ -331,6 +334,7 @@ public class OwnerWorkController implements Initializable {
                 System.out.println("ok export" + "i = " + i);
 
                 System.out.println(harvestedTimes + " test2");
+                //harvestedTimes = 0;
 
                 //pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?");
                 pst = con.prepareStatement("UPDATE work SET status_name = ? , date_start = ? , date_done = ?, harvested_times = \"0\" ");
@@ -340,6 +344,7 @@ public class OwnerWorkController implements Initializable {
 
                 pst.executeUpdate();
                 updateData();
+
             }
             if (result.get() == ButtonType.CANCEL){
                 System.out.println("cancel export");
