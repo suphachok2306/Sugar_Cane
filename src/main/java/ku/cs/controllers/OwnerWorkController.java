@@ -47,7 +47,7 @@ public class OwnerWorkController implements Initializable {
 
     private int i = 1; //ไว้เช็คปุ่ม Confirm
 
-    private int harvestedTimes = 1;
+    private int harvestedTimes = 0;
 
     private int countDoneForExport = 1;
 
@@ -129,7 +129,7 @@ public class OwnerWorkController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        times.setText(String.valueOf(harvestedTimes - 1) + " / 4");
+        times.setText(String.valueOf(harvestedTimes) + " / 4");
         updateData();
     }
 
