@@ -30,11 +30,11 @@ public class App extends Application {
     }
 
     private static void configRoute() {
-        FXRouter.when("login","ku/cs/login.fxml","Sugarcane");
+        FXRouter.when("login", "ku/cs/login.fxml","Sugarcane");
         FXRouter.when("register","ku/cs/register.fxml","Sugarcane");
-        FXRouter.when("employee","ku/cs/employee.fxml","Sugarcane");
+        FXRouter.when("employee", "ku/cs/employee.fxml","Sugarcane");
         FXRouter.when("owner","ku/cs/owner.fxml","Sugarcane");
-        FXRouter.when("check","ku/cs/checkWork.fxml","Sugarcane");
+        FXRouter.when("check", "ku/cs/checkWork.fxml","Sugarcane");
     }
 
     public static void main(String[] args) {
