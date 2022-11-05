@@ -1,52 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: BISQUE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CheckWorkController">
+<AnchorPane prefHeight="512.0" prefWidth="487.0" style="-fx-background-color: #b9f5b8;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CheckWorkController">
    <children>
-      <Label layoutX="318.0" layoutY="67.0" text="Check Work">
+      <Label layoutX="146.0" layoutY="51.0" text="Check Work">
          <font>
-            <Font name="Century" size="29.0" />
+            <Font name="Berlin Sans FB" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="265.0" layoutY="206.0" text="Work">
+      <Label layoutX="137.0" layoutY="171.0" text="Work">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="workName" layoutX="386.0" layoutY="206.0" text="Label">
+      <Label fx:id="workName" layoutX="225.0" layoutY="171.0" text="Label">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="292.0" text="Start Date">
+      <Label layoutX="86.0" layoutY="244.0" text="Start Date">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="sDate" layoutX="386.0" layoutY="296.0" text="Label">
+      <Label fx:id="sDate" layoutX="225.0" layoutY="244.0" text="Label">
          <font>
-            <Font name="Century" size="18.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="515.0" layoutY="489.0" mnemonicParsing="false" onAction="#passButton" prefHeight="37.0" prefWidth="61.0" text="Pass" />
-      <Button layoutX="211.0" layoutY="489.0" mnemonicParsing="false" onAction="#notPassButton" prefHeight="37.0" prefWidth="69.0" text="Not pass" />
-      <Label fx:id="hTime" layoutX="211.0" layoutY="376.0" text="Havested Time">
+      <Label fx:id="hTime" layoutX="42.0" layoutY="328.0" text="Havested Time">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="hTimeLabel" layoutX="410.0" layoutY="376.0" text="Label">
+      <Label fx:id="hTimeLabel" layoutX="225.0" layoutY="328.0" text="Label">
          <font>
-            <Font name="Century" size="24.0" />
+            <Font name="Berlin Sans FB" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="40.0" layoutY="33.0" mnemonicParsing="false" onAction="#backButton" text="Back">
+      <Button layoutX="21.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButton" prefHeight="33.0" prefWidth="42.0" style="-fx-background-color: #008CBA;" text="&lt;" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
       </Button>
+      <Button layoutX="53.0" layoutY="413.0" mnemonicParsing="false" onAction="#notPassButton" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #ff6932;" text="Not pass" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="266.0" layoutY="413.0" mnemonicParsing="false" onAction="#passButton" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #9cd914;" text="Pass" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="20.0" />
+         </font>
+      </Button>
+      <Line endX="100.0" layoutX="235.0" layoutY="92.0" startX="-89.0" />
    </children>
 </AnchorPane>
