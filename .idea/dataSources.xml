@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/sugarcane_sa</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="sugarcane_sa@localhost [2]" uuid="54e7bd1b-86ad-46f2-a9af-bdfeb03e1173">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/sugarcane_sa</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

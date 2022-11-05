@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import ku.cs.models.User;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -70,16 +69,16 @@ public class LoginController {
             rs = con.prepareStatement(SQL).executeQuery();
             while (rs.next()) {
                 if (userNameTextField.getText().equals(rs.getString("username"))) {
+                    nodata.setVisible(false);
                     if (password.getText().equals(rs.getString("pass"))) {
                         role = rs.getString("role_id");
                         return true;
-                    }else if (!userNameTextField.getText().equals(rs.getString("username"))) {
-                        nodata.setVisible(true);
-                    }
-                    else {
+                    } else {
                         wrongdata.setVisible(true);
                         return false;
                     }
+                }else{
+                    nodata.setVisible(true);
                 }
             }
         } catch (SQLException ex) {

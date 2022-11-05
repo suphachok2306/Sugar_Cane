@@ -48,7 +48,9 @@ public class CheckWorkController {
                     if(selectedWork.getWorkName().equals("Harvest")){
                         hTime.setVisible(true);
                         hTimeLabel.setVisible(true);
-                        hTimeLabel.setText(rs.getString("harvested_times"));
+                        int h = Integer.parseInt(rs.getString("harvested_times"));
+                        h += 1;
+                        hTimeLabel.setText(String.valueOf(h));
                     }
                 }
             }

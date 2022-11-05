@@ -2,6 +2,7 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -82,6 +83,8 @@ public class RegisterController {
                 pst.setString(5,phoneTextField.getText());
                 pst.setString(6,"2");
                 pst.executeUpdate();
+                Alert error = new Alert(Alert.AlertType.ERROR, " Registration complete.");
+                error.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
