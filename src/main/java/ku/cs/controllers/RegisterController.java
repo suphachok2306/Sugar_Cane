@@ -83,7 +83,7 @@ public class RegisterController {
                 pst.setString(5,phoneTextField.getText());
                 pst.setString(6,"2");
                 pst.executeUpdate();
-                Alert error = new Alert(Alert.AlertType.ERROR, " Registration complete.");
+                Alert error = new Alert(Alert.AlertType.INFORMATION, " Registration complete.");
                 error.show();
             } catch (Exception e) {
                 e.printStackTrace();

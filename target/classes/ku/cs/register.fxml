@@ -17,8 +17,8 @@
                </font>
             </Label>
             <TextField fx:id="nameTextField" layoutX="188.0" layoutY="142.0" prefHeight="33.0" prefWidth="240.0" promptText="Name" />
-            <TextField fx:id="userNameTextField" layoutX="188.0" layoutY="245.0" prefHeight="33.0" prefWidth="240.0" promptText="Password" />
-            <TextField fx:id="passwordTextField" layoutX="188.0" layoutY="192.0" prefHeight="33.0" prefWidth="240.0" promptText="Userame" />
+            <TextField fx:id="userNameTextField" layoutX="188.0" layoutY="192.0" prefHeight="33.0" prefWidth="240.0" promptText="Username" />
+            <TextField fx:id="passwordTextField" layoutX="188.0" layoutY="245.0" prefHeight="33.0" prefWidth="240.0" promptText="Password" />
             <TextField fx:id="emailTextField" layoutX="188.0" layoutY="296.0" prefHeight="33.0" prefWidth="240.0" promptText="E-mail" />
             <TextField fx:id="phoneTextField" layoutX="188.0" layoutY="348.0" prefHeight="33.0" prefWidth="240.0" promptText="Telphone Number" />
             <Label layoutX="23.0" layoutY="192.0" prefHeight="33.0" prefWidth="165.0" text="Username  :" textFill="WHITE">

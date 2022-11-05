@@ -12,7 +12,7 @@
    <children>
       <Pane layoutX="349.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #b9f5b8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="80.0" layoutY="44.0" prefHeight="93.0" prefWidth="291.0" text="Sugarcane" textFill="WHITE">
+            <Label layoutX="80.0" layoutY="44.0" prefHeight="93.0" prefWidth="291.0" text="Sugarcane" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="64.0" />
                </font>
@@ -27,14 +27,14 @@
                   <Font name="Berlin Sans FB Bold" size="18.0" />
                </font>
             </Button>
-            <Label layoutX="33.0" layoutY="137.0" prefHeight="93.0" prefWidth="135.0" text="Username :" textFill="WHITE">
+            <Label layoutX="33.0" layoutY="137.0" prefHeight="93.0" prefWidth="135.0" text="Username :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
             </Label>
             <TextField fx:id="userNameTextField" layoutX="168.0" layoutY="166.0" prefHeight="35.0" prefWidth="236.0" promptText="Username" />
             <PasswordField fx:id="password" layoutX="168.0" layoutY="237.0" prefHeight="35.0" prefWidth="236.0" promptText="Password" />
-            <Label layoutX="33.0" layoutY="208.0" prefHeight="93.0" prefWidth="135.0" text="Password :" textFill="WHITE">
+            <Label layoutX="33.0" layoutY="208.0" prefHeight="93.0" prefWidth="135.0" text="Password :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
