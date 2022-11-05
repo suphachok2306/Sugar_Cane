@@ -157,14 +157,14 @@ public class OwnerWorkController implements Initializable {
 
                 ////////countDoneForExport
 
-                if (rs.getString("work_name").equals("Crop")){
+                if (rs.getString("work_name").equals("Crop , Repair")){
                     if (rs.getString("status_name").equals("Done.")){
                         countDoneForExport = 1;}
 
-                }else if (rs.getString("work_name").equals("Restoration")){
+                }else if (rs.getString("work_name").equals("Weed")){
                     if (rs.getString("status_name").equals("Done.")){
                         countDoneForExport = 2;}
-                }else if (rs.getString("work_name").equals("Caring")){
+                }else if (rs.getString("work_name").equals("Fertilize")){
                     if (rs.getString("status_name").equals("Done.")){
                         countDoneForExport = 3;}
                 }else if (rs.getString("work_name").equals("Harvest")){
@@ -177,14 +177,14 @@ public class OwnerWorkController implements Initializable {
 
 
                 /////////////i
-                if (rs.getString("work_name").equals("Crop")){
+                if (rs.getString("work_name").equals("Crop , Repair")){
                     if (!rs.getString("status_name").equals("Not assign.")){
                         i = 2;}
 
-                }else if (rs.getString("work_name").equals("Restoration")){
+                }else if (rs.getString("work_name").equals("Weed")){
                     if (!rs.getString("status_name").equals("Not assign.")){
                         i = 3;}
-                }else if (rs.getString("work_name").equals("Caring")){
+                }else if (rs.getString("work_name").equals("Fertilize")){
                     if (!rs.getString("status_name").equals("Not assign.")){
                         i = 4;}
                 }else if (rs.getString("work_name").equals("Harvest")){
@@ -215,33 +215,33 @@ public class OwnerWorkController implements Initializable {
                 error.show();
             }
 
-            if (selectedWork.getWorkName().equals("Crop")) {
+            if (selectedWork.getWorkName().equals("Crop , Repair")) {
                 if (i == 1){
                     statusCrop();
                     //i = 2;
                 }
             }
 
-            if (selectedWork.getWorkName().equals("Restoration")) {
+            if (selectedWork.getWorkName().equals("Weed")) {
                 if (i == 2){
                     statusRestoration();
                     //i = 3;
                 }
                 else if (selectedWork.getStatusName().equals("Not assign.")){
                     System.out.println(i);
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair first.");
                     error.show();
                 }
             }
 
-            if (selectedWork.getWorkName().equals("Caring")) {
+            if (selectedWork.getWorkName().equals("Fertilize")) {
                 if (i == 3){
                     statusCaring();
                     //i = 4;
                 }
                 else if (selectedWork.getStatusName().equals("Not assign.")){
                     System.out.println(i);
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair and Weed first.");
                     error.show();
                 }
             }
@@ -253,7 +253,7 @@ public class OwnerWorkController implements Initializable {
                 else if (selectedWork.getStatusName().equals("Not assign.")){
                     System.out.println(i);
                     System.out.println(i + "  dfgdf");
-                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
+                    Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair and Weed and Fertilize first.");
                     error.show();
                 }
             }

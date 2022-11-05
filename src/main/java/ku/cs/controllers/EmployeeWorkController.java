@@ -160,15 +160,15 @@ public class EmployeeWorkController implements Initializable {
                 /*if (rs.getString("username").equals(currentUsername)) {
                     userName.setText("USERNAME : " + rs.getString("username"));
                 }*/
-                if (rs.getString("work_name").equals("Crop")){
+                if (rs.getString("work_name").equals("Crop , Repair")){
                     if (rs.getString("status_name").equals("Done.")){
                         i = 2;}
                 }
-                else if (rs.getString("work_name").equals("Restoration")){
+                else if (rs.getString("work_name").equals("Weed")){
                     if (rs.getString("status_name").equals("Done.")){
                         i = 3;}
                 }
-                else if (rs.getString("work_name").equals("Caring")){
+                else if (rs.getString("work_name").equals("Fertilize")){
                     if (rs.getString("status_name").equals("Done.")){
                         i = 4;}
                 }
@@ -190,7 +190,7 @@ public class EmployeeWorkController implements Initializable {
             Alert error = new Alert(Alert.AlertType.ERROR, " Please select work.");
             error.show();
         } else {
-            if (selectedWork.getWorkName().equals("Crop")) {
+            if (selectedWork.getWorkName().equals("Crop , Repair")) {
                 statusCrop();
                 if (selectedWork.getStatusName().equals("Not pass and rework.")) {
                     statusCrop();
@@ -203,7 +203,7 @@ public class EmployeeWorkController implements Initializable {
                 }
             }
 
-            if (selectedWork.getWorkName().equals("Restoration")) {
+            if (selectedWork.getWorkName().equals("Weed")) {
                 if (i == 2) {
                     //System.out.println(i);
                     statusRestoration();
@@ -211,7 +211,7 @@ public class EmployeeWorkController implements Initializable {
                 if (i == 1){
                     System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
-                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop first.");
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair first.");
                         error.show();
                     }
                 }
@@ -226,14 +226,14 @@ public class EmployeeWorkController implements Initializable {
                 }
             }
 
-            if (selectedWork.getWorkName().equals("Caring")) {
+            if (selectedWork.getWorkName().equals("Fertilize")) {
                 if (i == 3) {
                     statusCaring();
                 }
                 if (i == 1 || i == 2){
                     System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
-                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration first.");
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair and Weed first.");
                         error.show();
                     }
                 }
@@ -255,7 +255,7 @@ public class EmployeeWorkController implements Initializable {
                 if (i == 1 || i == 2 || i == 3 ){
                     System.out.println(i);
                     if (selectedWork.getStatusName().equals("Assigned.")) {
-                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the crop and restoration and caring first.");
+                        Alert error = new Alert(Alert.AlertType.ERROR, "Do the Crop , Repair and Weed and Fertilize first.");
                         error.show();
                     }
                 }
