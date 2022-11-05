@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="520.0" prefWidth="450.0" style="-fx-background-color: #b9f5b8;">
          <children>
-            <Label layoutX="118.0" layoutY="33.0" prefHeight="93.0" prefWidth="214.0" text="Register" textFill="WHITE">
+            <Label layoutX="118.0" layoutY="33.0" prefHeight="93.0" prefWidth="214.0" text="Register" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="64.0" />
                </font>
@@ -21,27 +21,27 @@
             <TextField fx:id="passwordTextField" layoutX="188.0" layoutY="245.0" prefHeight="33.0" prefWidth="240.0" promptText="Password" />
             <TextField fx:id="emailTextField" layoutX="188.0" layoutY="296.0" prefHeight="33.0" prefWidth="240.0" promptText="E-mail" />
             <TextField fx:id="phoneTextField" layoutX="188.0" layoutY="348.0" prefHeight="33.0" prefWidth="240.0" promptText="Telphone Number" />
-            <Label layoutX="23.0" layoutY="192.0" prefHeight="33.0" prefWidth="165.0" text="Username  :" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="192.0" prefHeight="33.0" prefWidth="165.0" text="Username  :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="142.0" prefHeight="33.0" prefWidth="165.0" text="Name        :" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="142.0" prefHeight="33.0" prefWidth="165.0" text="Name        :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="245.0" prefHeight="33.0" prefWidth="165.0" text="Password   :" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="245.0" prefHeight="33.0" prefWidth="165.0" text="Password   :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="294.0" prefHeight="33.0" prefWidth="165.0" text="E-mail        :" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="294.0" prefHeight="33.0" prefWidth="165.0" text="E-mail        :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="321.0" prefHeight="87.0" prefWidth="154.0" text="Tel. Num   :" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="321.0" prefHeight="87.0" prefWidth="154.0" text="Tel. Num   :" textFill="#ff9350">
                <font>
                   <Font name="Berlin Sans FB" size="28.0" />
                </font>

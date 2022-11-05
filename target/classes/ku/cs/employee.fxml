@@ -17,14 +17,6 @@
             <TableColumn fx:id="statusName" prefWidth="240.00003051757812" text="Status" />
          </columns>
       </TableView>
-      <Button layoutX="682.0" layoutY="529.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="26.0" prefWidth="90.0" text="LOGOUT" textFill="RED">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
-      <Button layoutX="167.0" layoutY="408.0" mnemonicParsing="false" onAction="#sendWork" prefHeight="26.0" prefWidth="117.0" text="Send">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
       <Label fx:id="userName" layoutX="34.0" layoutY="30.0" text="username">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
@@ -40,5 +32,15 @@
          </children>
       </AnchorPane>
       <Line endX="87.39996337890625" layoutX="424.0" layoutY="72.0" startX="-83.800048828125" />
+      <Button layoutX="674.0" layoutY="545.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="40.0" prefWidth="118.0" text="LOGOUT" textFill="RED">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="167.0" layoutY="388.0" mnemonicParsing="false" onAction="#sendWork" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: DFD21B;" text="SEND" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

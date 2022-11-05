@@ -10,22 +10,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="684.0" style="-fx-background-color: b9f5b8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.OwnerWorkController">
    <children>
-      <Button layoutX="594.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToCheckWork" prefHeight="30.0" prefWidth="75.0" text="CHECK">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
-      <Button layoutX="669.0" layoutY="538.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="26.0" prefWidth="90.0" text="LOGOUT" textFill="RED">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
-      <Button layoutX="82.0" layoutY="447.0" mnemonicParsing="false" onAction="#exportSugarCane" prefHeight="36.0" prefWidth="182.0" text="EXPORT SUGAR CANE">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
-      <Button layoutX="128.0" layoutY="374.0" mnemonicParsing="false" onAction="#confirmWork" prefHeight="30.0" prefWidth="90.0" text="CONFIRM">
-         <font>
-            <Font name="Berlin Sans FB" size="16.0" />
-         </font></Button>
       <TableView fx:id="tableView" layoutX="82.0" layoutY="162.0" prefHeight="200.0" prefWidth="648.0" style="-fx-background-color: white;">
         <columns>
           <TableColumn fx:id="workName" prefWidth="138.4000473022461" text="Works" />
@@ -44,5 +28,25 @@
          </children>
       </AnchorPane>
       <Line endX="87.39996337890625" layoutX="404.0" layoutY="67.0" startX="-83.800048828125" />
+      <Button layoutX="82.0" layoutY="384.0" mnemonicParsing="false" onAction="#confirmWork" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: DFD21B;" text="CONFIRM" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="610.0" layoutY="384.0" mnemonicParsing="false" onAction="#switchToCheckWork" prefHeight="40.0" prefWidth="118.0" style="-fx-background-color: #008CBA;" text="CHECK" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="82.0" layoutY="471.0" mnemonicParsing="false" onAction="#exportSugarCane" prefHeight="40.0" prefWidth="209.0" style="-fx-background-color: #008000;" text="EXPORT SUGAR CANE" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="658.0" layoutY="544.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="40.0" prefWidth="118.0" text="LOGOUT" textFill="RED">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
